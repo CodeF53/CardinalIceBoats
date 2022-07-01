@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinalboats",
+  "version": "${version}",
+  "name": "Cardinal Boats",
+  "description": "Makes boats snap to cardinal directions when placed on ice",
+  "authors": [
+    "CodeF53#0241"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/cardinalboats",
+    "sources": "https://github.com/CodeF53/CardinalIceBoats",
+    "issues": "https://github.com/CodeF53/CardinalIceBoats/issues"
+  },
+  "license": "CC0",
+  "icon": "assets/cardinalboats/icon.png",
+  "environment": "*",
+  "mixins": [
+    "cardinalboats-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.7",
+    "minecraft": ">=1.19"
+  }
+}

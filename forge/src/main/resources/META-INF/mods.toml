@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[41,)"
+issueTrackerURL = "https://github.com/CodeF53/CardinalIceBoats/issues"
+license = "CC0"
+
+[[mods]]
+modId = "cardinalboats"
+version = "${version}"
+displayName = "Cardinal Boats"
+authors = "CodeF53#0241"
+description = '''
+Makes boats snap to cardinal directions when placed on ice
+'''
+logoFile = "icon.png"
+
+[[dependencies.cardinalboats]]
+modId = "forge"
+mandatory = true
+versionRange = "[41,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cardinalboats]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19,)"
+ordering = "NONE"
+side = "BOTH"

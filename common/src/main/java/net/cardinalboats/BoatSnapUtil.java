@@ -1,13 +1,13 @@
-package net.f53.cardinalboats;
+package net.cardinalboats;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class BoatSnapUtil {
     private static final ArrayList<String> ice_types = new ArrayList<>(Arrays.asList("minecraft:ice", "minecraft:packed_ice", "minecraft:blue_ice", "minecraft:frosted_ice"));

@@ -1,4 +1,4 @@
-package net.f53.cardinalboats.mixin;
+package net.cardinalboats.mixin;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -12,15 +12,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.f53.cardinalboats.BoatSnapUtil.roundYRot;
-import static net.f53.cardinalboats.BoatSnapUtil.shouldSnap;
+import static net.cardinalboats.BoatSnapUtil.roundYRot;
+import static net.cardinalboats.BoatSnapUtil.shouldSnap;
 
 @Mixin(BoatItem.class)
 public class ServerBoatSnap {
-	@Inject(method = "use", at = @At(value = "HEAD"))
-	private void serverBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-		if (shouldSnap(level, player)) {
-			player.setYRot(roundYRot(player.getYRot()));
-		}
-	}
+    @Inject(method = "use", at = @At(value = "HEAD"))
+    private void serverBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+        if (shouldSnap(level, player)) {
+            player.setYRot(roundYRot(player.getYRot()));
+        }
+    }
 }
