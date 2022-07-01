@@ -4,9 +4,7 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-  ],
-  "client": [
-    "ExampleMixin"
+    "ServerBoatSnap"
   ],
   "injectors": {
     "defaultRequire": 1
