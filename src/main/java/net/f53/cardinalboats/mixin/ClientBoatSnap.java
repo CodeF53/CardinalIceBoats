@@ -1,5 +1,7 @@
 package net.f53.cardinalboats.mixin;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -16,11 +18,11 @@ import static net.f53.cardinalboats.BoatSnapUtil.roundYRot;
 import static net.f53.cardinalboats.BoatSnapUtil.shouldSnap;
 
 @Mixin(BoatItem.class)
-public class ServerBoatSnap {
+public class ClientBoatSnap {
 	@Inject(method = "use", at = @At(value = "HEAD"))
-	private void serverBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+	private void clientBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
 		if (shouldSnap(level, player)) {
-			player.setYRot(roundYRot(player.getYRot()));
+			Minecraft.getInstance().player.connection.send(new ServerboundMovePlayerPacket.Rot(roundYRot(player.getYRot()), player.getXRot(), player.isOnGround()));
 		}
 	}
 }
