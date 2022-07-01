@@ -1,38 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "cardinalboats",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Cardinal Ice Boats",
+  "description": "Makes boats snap to cardinal directions when placed on ice.",
   "authors": [
-    "Me!"
+    "CodeF53#0241"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://modrinth.com/mod/CardinalBoats",
+    "sources": "https://github.com/CodeF53/CardinalIceBoats"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/cardinalboats/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "net.fabricmc.example.ExampleMod"
-    ]
-  },
   "mixins": [
-    "modid.mixins.json"
+    "cardinalboats.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.14.6",
-    "fabric": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
