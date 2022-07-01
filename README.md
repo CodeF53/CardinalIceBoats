@@ -4,8 +4,9 @@
 
 Single Mixin mod that makes boats snap to facing North/South/East/West (and 45 degree angles) when placed on ice.
 
-Server side only, client side is planned, but I am not sure if it is possible.
+Works serverside or clientside!\
+**WARNING: when installed client-side the mod sends potentially suspicious packets and may lead to a ban, ask for permission before using on servers**
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This Mod is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
