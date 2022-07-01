@@ -1,8 +1,10 @@
-# Fabric Example Mod
+![# Cardinal Ice Boats](Banner.png)
 
-## Setup
+## About
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Single Mixin mod that makes boats snap to facing North/South/East/West (and 45 degree angles) when placed on ice.
+
+Server side only, client side is planned, but I am not sure if it is possible.
 
 ## License
 
