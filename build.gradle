@@ -1,7 +1,7 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
     id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
-    id "io.github.pacifistmc.forgix" version "1.0"
+    id "io.github.pacifistmc.forgix" version "1.0.1"
 }
 
 architectury {
@@ -49,15 +49,14 @@ allprojects {
 }
 
 forgix {
-    group = project.maven_group
     mergedJarName = "${archives_base_name}_${minecraft_version}_${mod_version}"
-
+    fabric {
+        jarLocation = "build/libs/cardinalboats-${mod_version}.jar"
+        additionalRelocate "net/cardinalboats", "fabric/net/cardinalboats"
+    }
     forge {
         jarLocation = "build/libs/cardinalboats-${mod_version}.jar"
         mixin "cardinalboats-common.mixins.json"
-    }
-
-    fabric {
-        jarLocation = "build/libs/cardinalboats-${mod_version}.jar"
+        additionalRelocate "net/cardinalboats", "forge/net/cardinalboats"
     }
 }
