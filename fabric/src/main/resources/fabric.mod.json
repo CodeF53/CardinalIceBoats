@@ -15,11 +15,20 @@
   "license": "CC0",
   "icon": "assets/cardinalboats/icon.png",
   "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.cardinalboats.fabric.CardinalBoatsInit"
+    ],
+    "modmenu": [
+      "net.cardinalboats.config.ModMenuIntegration"
+    ]
+  },
   "mixins": [
     "cardinalboats-common.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.7",
-    "minecraft": ">=1.19"
+    "minecraft": ">=1.19",
+    "architectury": ">=5.7.28"
   }
 }

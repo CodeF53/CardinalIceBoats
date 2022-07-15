@@ -26,3 +26,10 @@ mandatory = true
 versionRange = "[1.19,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.cardinalboats]]
+modId = "architectury"
+mandatory = true
+versionRange = "[5.7.28,)"
+ordering = "AFTER"
+side = "BOTH"

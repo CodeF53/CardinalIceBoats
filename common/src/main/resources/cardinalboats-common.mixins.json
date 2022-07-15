@@ -3,8 +3,11 @@
   "minVersion": "0.8",
   "package": "net.cardinalboats.mixin",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [
-    "BoatSnap"
+  "client": [
+    "ClientBoatSnap"
+  ],
+  "server": [
+    "ServerBoatSnap"
   ],
   "injectors": {
     "defaultRequire": 1
