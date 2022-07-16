@@ -19,19 +19,17 @@ import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
 
 public class TurnPriming {
-    // A key mapping with keyboard as the default
     public static final KeyMapping lQueueKey = new KeyMapping(
-            "key.cardinalboats.prime_left", // The translation key of the name shown in the Controls screen
-            InputConstants.Type.KEYSYM, // This key mapping is for Keyboards by default
-            InputConstants.KEY_LEFT, // The default keycode
-            "category.cardinalboats.key_category_title" // The category translation key used to categorize in the Controls screen
+            "key.cardinalboats.prime_left",
+            InputConstants.Type.KEYSYM,
+            InputConstants.KEY_LEFT,
+            "category.cardinalboats.key_category_title"
     );
-    // A key mapping with keyboard as the default
     public static final KeyMapping rQueueKey = new KeyMapping(
-            "key.cardinalboats.prime_right", // The translation key of the name shown in the Controls screen
-            InputConstants.Type.KEYSYM, // This key mapping is for Keyboards by default
-            InputConstants.KEY_RIGHT, // The default keycode
-            "category.cardinalboats.key_category_title" // The category translation key used to categorize in the Controls screen
+            "key.cardinalboats.prime_right",
+            InputConstants.Type.KEYSYM,
+            InputConstants.KEY_RIGHT,
+            "category.cardinalboats.key_category_title"
     );
 
     // Ran by forge and fabric initializer
@@ -70,6 +68,7 @@ public class TurnPriming {
                 boat.setYRot(Util.roundYRot(boat.getYRot() - 90));
                 player.setYRot(boat.getYRot());
                 boat.setDeltaMovement(Vec3.ZERO);
+                boat.deltaRotation = 0;
                 lTurnPrimed = false;
                 Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
             }
@@ -77,6 +76,7 @@ public class TurnPriming {
                 boat.setYRot(Util.roundYRot(boat.getYRot() + 90));
                 player.setYRot(boat.getYRot());
                 boat.setDeltaMovement(Vec3.ZERO);
+                boat.deltaRotation = 0;
                 rTurnPrimed = false;
                 Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
             }
@@ -87,6 +87,9 @@ public class TurnPriming {
             }
             lTurnPrimed = false;
             rTurnPrimed = false;
+
+            while (lQueueKey.consumeClick()) {}
+            while (rQueueKey.consumeClick()) {}
         }
     }
 

@@ -4,10 +4,10 @@
   "package": "net.cardinalboats.mixin",
   "compatibilityLevel": "JAVA_16",
   "client": [
-    "ClientBoatSnap"
+    "ClientBoatPlacementSnap"
   ],
   "server": [
-    "ServerBoatSnap"
+    "ServerBoatPlacementSnap"
   ],
   "injectors": {
     "defaultRequire": 1

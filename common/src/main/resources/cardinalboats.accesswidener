@@ -1,1 +1,4 @@
 accessWidener   v2  named
+
+accessible field net/minecraft/world/entity/vehicle/Boat deltaRotation F
+#accessible    field    net/minecraft/entity/vehicle/BoatEntity    yawVelocity    F
