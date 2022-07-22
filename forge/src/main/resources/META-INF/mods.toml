@@ -6,10 +6,10 @@ license = "CC0"
 [[mods]]
 modId = "cardinalboats"
 version = "${version}"
-displayName = "Cardinal Boats"
+displayName = "Cardinal Ice Boats"
 authors = "CodeF53#0241"
 description = '''
-Makes boats snap to cardinal directions when placed on ice
+Provides Several QOL Utilities for ice boating
 '''
 logoFile = "icon.png"
 

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "cardinalboats",
   "version": "${version}",
-  "name": "Cardinal Boats",
-  "description": "Makes boats snap to cardinal directions when placed on ice",
+  "name": "Cardinal Ice Boats",
+  "description": "Provides Several QOL Utilities for ice boating",
   "authors": [
     "CodeF53#0241"
   ],
@@ -29,6 +29,7 @@
   "depends": {
     "fabricloader": ">=0.14.7",
     "minecraft": ">=1.19",
-    "architectury": ">=5.7.28"
+    "architectury": ">=5.7.28",
+    "cloth-config": "*"
   }
 }

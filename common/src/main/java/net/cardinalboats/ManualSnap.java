@@ -26,7 +26,6 @@ public class ManualSnap {
         if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
             while (manualSnapKey.consumeClick()) {
                 boat.setYRot(Util.roundYRot(boat.getYRot()));
-                boat.setDeltaMovement(Vec3.ZERO);
                 boat.deltaRotation = 0;
                 minecraft.player.setYRot(boat.getYRot());
             }
