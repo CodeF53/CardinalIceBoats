@@ -18,7 +18,7 @@ public class ServerBoatPlacementSnap {
     @Inject(method = "use", at = @At(value = "HEAD"))
     private void serverBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (Util.shouldSnap(level, player)) {
-            player.setYRot(Util.roundYRot(player.getYRot()));
+            player.setYRot(Util.roundYRot(player.getYRot(), 45));
         }
     }
 }

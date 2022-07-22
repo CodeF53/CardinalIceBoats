@@ -57,7 +57,7 @@ public class Util {
         return false;
     }
 
-    public static float roundYRot(float yRot) {
-        return Math.round(yRot % 360/45.0)*45;
+    public static float roundYRot(float yRot, int toNearest) {
+        return Math.round(yRot % 360 / toNearest) * toNearest;
     }
 }

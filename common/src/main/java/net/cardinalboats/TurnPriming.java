@@ -63,11 +63,11 @@ public class TurnPriming {
                 }
 
                 if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
-                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() - 90), ModConfig.getInstance().maintainVelocityOnTurns);
+                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() - 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
                     lTurnPrimed = false;
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
                 } else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
-                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() + 90), ModConfig.getInstance().maintainVelocityOnTurns);
+                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() + 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
                     rTurnPrimed = false;
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
                 }

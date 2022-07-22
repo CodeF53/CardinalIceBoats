@@ -20,5 +20,9 @@
   "text.autoconfig.CardinalBoat.option.maintainVelocityOnTurns" : "Maintain Velocity on Primed Turns",
   "text.autoconfig.CardinalBoat.option.maintainVelocityOnTurns.@Tooltip" : "Maintains forward velocity on Primed Turns, similar to the snap key.\nMay not work well on laggy servers.\n§4OP as fuck, may get you banned.",
 
+  "text.autoconfig.CardinalBoat.option.eightWaySnapKey" : "Eight-Way Snap Key",
+  "text.autoconfig.CardinalBoat.option.eightWaySnapKey.@Tooltip" : "§aYes§r - Pressing Snap Key will align boat to nearest 45°\n§cNo§r - Pressing Snap Key will align boat to nearest 90°",
+
+
   "text.autoconfig.CardinalBoat.title" : "Cardinal Ice Boats Config"
 }

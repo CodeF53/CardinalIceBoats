@@ -22,7 +22,7 @@ public class ClientBoatPlacementSnap {
     @Inject(method = "use", at = @At(value = "HEAD"))
     private void clientBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         if (shouldSnap(level, player)) {
-            Minecraft.getInstance().player.connection.send(new ServerboundMovePlayerPacket.Rot(roundYRot(player.getYRot()), player.getXRot(), player.isOnGround()));
+            Minecraft.getInstance().player.connection.send(new ServerboundMovePlayerPacket.Rot(roundYRot(player.getYRot(), 45), player.getXRot(), player.isOnGround()));
         }
     }
 }

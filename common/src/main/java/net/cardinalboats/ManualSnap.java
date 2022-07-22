@@ -3,10 +3,10 @@ package net.cardinalboats;
 import com.mojang.blaze3d.platform.InputConstants;
 import dev.architectury.event.events.client.ClientTickEvent;
 import dev.architectury.registry.client.keymappings.KeyMappingRegistry;
+import net.cardinalboats.config.ModConfig;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.vehicle.Boat;
-import net.minecraft.world.phys.Vec3;
 
 public class ManualSnap {
     public static final KeyMapping manualSnapKey = new KeyMapping(
@@ -25,7 +25,7 @@ public class ManualSnap {
     public static void tick(Minecraft minecraft) {
         if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
             while (manualSnapKey.consumeClick()) {
-                Util.rotateBoat(boat, Util.roundYRot(boat.getYRot()), true);
+                Util.rotateBoat(boat, Util.roundYRot(boat.getYRot(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
             }
         } else {
             while (manualSnapKey.consumeClick()) {}
