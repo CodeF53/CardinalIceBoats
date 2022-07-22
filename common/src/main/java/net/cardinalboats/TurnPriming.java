@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.HashMap;
@@ -49,8 +50,6 @@ public class TurnPriming {
             if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
                 LocalPlayer player = minecraft.player;
 
-                // TODO: if this is problematic uncomment, but for now this just causes more problem then it solve
-                //if (Util.isIce(boat.getBlockStateOn())) {
                 while (lQueueKey.consumeClick()) {
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_queue").getString());
                     lTurnPrimed = true;
@@ -61,10 +60,6 @@ public class TurnPriming {
                     rTurnPrimed = true;
                     lTurnPrimed = false;
                 }
-            /*} else {
-                while (lQueueKey.consumeClick()) {}
-                while (rQueueKey.consumeClick()) {}
-            }*/
 
                 if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
                     boat.setYRot(Util.roundYRot(boat.getYRot() - 90));
@@ -99,16 +94,22 @@ public class TurnPriming {
     }
 
     private static final Map<Direction, int[][]> toScanMapLeft = new HashMap<>() {{
-        put(Direction.SOUTH, new int[][]{{ 3, 0}, { 3,-1}});
-        put(Direction.NORTH, new int[][]{{-3, 0}, {-3, 1}});
-        put(Direction.EAST,  new int[][]{{ 0,-3}, {-1,-3}});
-        put(Direction.WEST,  new int[][]{{ 0, 3}, { 1, 3}});
+        put(Direction.SOUTH, new int[][]{{ 3, 0}, { 3,-1}, { 3,-2}});
+        put(Direction.NORTH, new int[][]{{-3, 0}, {-3, 1}, {-3, 2}});
+        put(Direction.EAST,  new int[][]{{ 0,-3}, {-1,-3}, {-2,-3}});
+        put(Direction.WEST,  new int[][]{{ 0, 3}, { 1, 3}, { 2, 3}});
     }};
     private static final Map<Direction, int[][]> toScanMapRight = new HashMap<>() {{
-        put(Direction.SOUTH, new int[][]{{-3, 0}, {-3,-1}});
-        put(Direction.NORTH, new int[][]{{ 3, 0}, { 3, 1}});
-        put(Direction.EAST,  new int[][]{{ 0, 3}, {-1, 3}});
-        put(Direction.WEST,  new int[][]{{ 0,-3}, { 1,-3}});
+        put(Direction.SOUTH, new int[][]{{-3, 0}, {-3,-1}, {-3,-2}});
+        put(Direction.NORTH, new int[][]{{ 3, 0}, { 3, 1}, { 3, 2}});
+        put(Direction.EAST,  new int[][]{{ 0, 3}, {-1, 3}, {-2, 3}});
+        put(Direction.WEST,  new int[][]{{ 0,-3}, { 1,-3}, { 2,-3}});
+    }};
+    private static final Map<Direction, int[][]> snapBlockMap = new HashMap<>() {{
+        put(Direction.SOUTH, new int[][]{{ 0, 0}, { 0,-1}, { 0,-2}});
+        put(Direction.NORTH, new int[][]{{ 0, 0}, { 0, 1}, { 0, 2}});
+        put(Direction.EAST,  new int[][]{{ 0, 0}, {-1, 0}, {-2, 0}});
+        put(Direction.WEST,  new int[][]{{ 0, 0}, { 1, 0}, { 2, 0}});
     }};
 
     public static boolean shouldTurn(Boat boat, ClientLevel level, boolean left) {
@@ -128,8 +129,15 @@ public class TurnPriming {
             map = toScanMapRight.get(direction);
         }
 
-        // check if either of the blocks are ice
-        return Util.isIce(level.getBlockState(new BlockPos(rootX + map[0][0], rootY, rootZ + map[0][1]))) ||
-                Util.isIce(level.getBlockState(new BlockPos(rootX + map[1][0], rootY, rootZ + map[1][1])));
+        for (int i = 0; i < map.length; i++) {
+            BlockPos testBlockPos = new BlockPos(rootX + map[i][0], rootY, rootZ + map[i][1]);
+            if (Util.isIce(level.getBlockState(testBlockPos))) {
+                int[] snapBlock = snapBlockMap.get(direction)[i];
+                boat.setPos(rootX + snapBlock[0] + 0.5, boat.getY(), rootZ+snapBlock[1] + 0.5);
+                return true;
+            }
+        }
+
+        return false;
     }
 }
