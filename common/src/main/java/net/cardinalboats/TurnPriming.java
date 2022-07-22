@@ -2,6 +2,7 @@ package net.cardinalboats;
 
 import com.mojang.blaze3d.platform.InputConstants;
 
+import net.cardinalboats.optout.OptoutManager;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -44,11 +45,12 @@ public class TurnPriming {
     private static boolean rTurnPrimed = false;
 
     public static void tick(Minecraft minecraft) {
-        if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
-            LocalPlayer player = minecraft.player;
+        if (OptoutManager.Enabled) {
+            if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
+                LocalPlayer player = minecraft.player;
 
-            // TODO: if this is problematic uncomment, but for now this just causes more problem then it solve
-            //if (Util.isIce(boat.getBlockStateOn())) {
+                // TODO: if this is problematic uncomment, but for now this just causes more problem then it solve
+                //if (Util.isIce(boat.getBlockStateOn())) {
                 while (lQueueKey.consumeClick()) {
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_queue").getString());
                     lTurnPrimed = true;
@@ -64,32 +66,35 @@ public class TurnPriming {
                 while (rQueueKey.consumeClick()) {}
             }*/
 
-            if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
-                boat.setYRot(Util.roundYRot(boat.getYRot() - 90));
-                player.setYRot(boat.getYRot());
-                boat.setDeltaMovement(Vec3.ZERO);
-                boat.deltaRotation = 0;
+                if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
+                    boat.setYRot(Util.roundYRot(boat.getYRot() - 90));
+                    player.setYRot(boat.getYRot());
+                    boat.setDeltaMovement(Vec3.ZERO);
+                    boat.deltaRotation = 0;
+                    lTurnPrimed = false;
+                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
+                } else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
+                    boat.setYRot(Util.roundYRot(boat.getYRot() + 90));
+                    player.setYRot(boat.getYRot());
+                    boat.setDeltaMovement(Vec3.ZERO);
+                    boat.deltaRotation = 0;
+                    rTurnPrimed = false;
+                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
+                }
+            } else {
+                // if we aren't in the boat anymore, we don't care
+                if (lTurnPrimed || rTurnPrimed) {
+                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.cancel").getString());
+                }
                 lTurnPrimed = false;
-                Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
-            }
-            else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
-                boat.setYRot(Util.roundYRot(boat.getYRot() + 90));
-                player.setYRot(boat.getYRot());
-                boat.setDeltaMovement(Vec3.ZERO);
-                boat.deltaRotation = 0;
                 rTurnPrimed = false;
-                Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
-            }
-        } else {
-            // if we aren't in the boat anymore, we don't care
-            if (lTurnPrimed || rTurnPrimed){
-                Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.cancel").getString());
-            }
-            lTurnPrimed = false;
-            rTurnPrimed = false;
 
-            while (lQueueKey.consumeClick()) {}
-            while (rQueueKey.consumeClick()) {}
+                // not in a boat, don't care about any presses these buttons get right now
+                while (lQueueKey.consumeClick()) {
+                }
+                while (rQueueKey.consumeClick()) {
+                }
+            }
         }
     }
 
