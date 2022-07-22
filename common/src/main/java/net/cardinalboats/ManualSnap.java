@@ -23,7 +23,7 @@ public class ManualSnap {
     }
 
     public static void tick(Minecraft minecraft) {
-        if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
+        if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat && Util.isIce(boat.getBlockStateOn())) {
             while (manualSnapKey.consumeClick()) {
                 Util.rotateBoat(boat, Util.roundYRot(boat.getYRot(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
             }
