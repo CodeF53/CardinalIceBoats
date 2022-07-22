@@ -16,5 +16,9 @@
 
   "text.autoconfig.CardinalBoat.option.doChatShit" : "Print primed turn logs to chat",
   "text.autoconfig.CardinalBoat.option.doChatShit.@Tooltip" : "Prints primed, completed, and cancelled messages to the chat.",
+
+  "text.autoconfig.CardinalBoat.option.maintainVelocityOnTurns" : "Maintain Velocity on Primed Turns",
+  "text.autoconfig.CardinalBoat.option.maintainVelocityOnTurns.@Tooltip" : "Maintains forward velocity on Primed Turns, similar to the snap key.\nMay not work well on laggy servers.\n§4OP as fuck, may get you banned.",
+
   "text.autoconfig.CardinalBoat.title" : "Cardinal Ice Boats Config"
 }

@@ -12,6 +12,9 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean doChatShit = true;
 
+    @ConfigEntry.Gui.Tooltip
+    public boolean maintainVelocityOnTurns = false;
+
     public static void init() {
         AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
     }

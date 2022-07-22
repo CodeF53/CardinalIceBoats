@@ -2,6 +2,7 @@ package net.cardinalboats;
 
 import com.mojang.blaze3d.platform.InputConstants;
 
+import net.cardinalboats.config.ModConfig;
 import net.cardinalboats.optout.OptoutManager;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -62,17 +63,11 @@ public class TurnPriming {
                 }
 
                 if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
-                    boat.setYRot(Util.roundYRot(boat.getYRot() - 90));
-                    player.setYRot(boat.getYRot());
-                    boat.setDeltaMovement(Vec3.ZERO);
-                    boat.deltaRotation = 0;
+                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() - 90), ModConfig.getInstance().maintainVelocityOnTurns);
                     lTurnPrimed = false;
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
                 } else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
-                    boat.setYRot(Util.roundYRot(boat.getYRot() + 90));
-                    player.setYRot(boat.getYRot());
-                    boat.setDeltaMovement(Vec3.ZERO);
-                    boat.deltaRotation = 0;
+                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() + 90), ModConfig.getInstance().maintainVelocityOnTurns);
                     rTurnPrimed = false;
                     Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
                 }
