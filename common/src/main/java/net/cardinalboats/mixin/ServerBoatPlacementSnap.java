@@ -1,6 +1,5 @@
 package net.cardinalboats.mixin;
 
-
 import net.cardinalboats.Util;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
