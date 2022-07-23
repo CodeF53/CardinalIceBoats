@@ -46,28 +46,35 @@ public class TurnPriming {
 
     public static void tick(Minecraft minecraft) {
         if (OptoutManager.Enabled) {
-            if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat && Util.isIce(boat.getBlockStateOn())) {
-                LocalPlayer player = minecraft.player;
+            if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat) {
+                if (Util.isIce(boat.getBlockStateOn())) {
+                    LocalPlayer player = minecraft.player;
 
-                while (lQueueKey.consumeClick()) {
-                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_queue").getString());
-                    lTurnPrimed = true;
-                    rTurnPrimed = false;
-                }
-                while (rQueueKey.consumeClick()) {
-                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_queue").getString());
-                    rTurnPrimed = true;
-                    lTurnPrimed = false;
-                }
+                    while (lQueueKey.consumeClick()) {
+                        Util.ClientChatLog(player, Component.translatable("info.cardinalboats.left_turn_queue").getString());
+                        lTurnPrimed = true;
+                        rTurnPrimed = false;
+                    }
+                    while (rQueueKey.consumeClick()) {
+                        Util.ClientChatLog(player, Component.translatable("info.cardinalboats.right_turn_queue").getString());
+                        rTurnPrimed = true;
+                        lTurnPrimed = false;
+                    }
 
-                if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
-                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() - 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
-                    lTurnPrimed = false;
-                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
-                } else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
-                    Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() + 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
-                    rTurnPrimed = false;
-                    Util.ClientChatLog(minecraft.player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
+                    if (lTurnPrimed && shouldTurn(boat, minecraft.level, true)) {
+                        Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() - 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
+                        lTurnPrimed = false;
+                        Util.ClientChatLog(player, Component.translatable("info.cardinalboats.left_turn_complete").getString());
+                    } else if (rTurnPrimed && shouldTurn(boat, minecraft.level, false)) {
+                        Util.rotateBoat(boat, Util.roundYRot(boat.getYRot() + 90, 90), ModConfig.getInstance().maintainVelocityOnTurns);
+                        rTurnPrimed = false;
+                        Util.ClientChatLog(player, Component.translatable("info.cardinalboats.right_turn_complete").getString());
+                    }
+                } else {
+                    while (lQueueKey.consumeClick()) {
+                    }
+                    while (rQueueKey.consumeClick()) {
+                    }
                 }
             } else {
                 // if we aren't in the boat anymore, we don't care
