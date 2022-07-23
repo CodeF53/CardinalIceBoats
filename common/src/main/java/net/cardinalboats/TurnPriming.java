@@ -123,14 +123,11 @@ public class TurnPriming {
         }
 
         for (int i = 0; i < map.length; i++) {
-            // you gotta be moving at least
-            if (i == 0 || boat.getDeltaMovement().length() > 5) {
-                BlockPos testBlockPos = new BlockPos(rootX + map[i][0], rootY, rootZ + map[i][1]);
-                if (Util.isIce(level.getBlockState(testBlockPos))) {
-                    int[] snapBlock = snapBlockMap.get(direction)[i];
-                    boat.setPos(rootX + snapBlock[0] + 0.5, boat.getY(), rootZ + snapBlock[1] + 0.5);
-                    return true;
-                }
+            BlockPos testBlockPos = new BlockPos(rootX + map[i][0], rootY, rootZ + map[i][1]);
+            if (Util.isIce(level.getBlockState(testBlockPos))) {
+                int[] snapBlock = snapBlockMap.get(direction)[i];
+                boat.setPos(rootX + snapBlock[0] + 0.5, boat.getY(), rootZ + snapBlock[1] + 0.5);
+                return true;
             }
         }
 
