@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "cardinalboats",
+  "version": "${version}",
+  "name": "Cardinal Ice Boats",
+  "description": "Provides Several QOL Utilities for ice boating",
+  "authors": [
+    "CodeF53#0241"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/cardinalboats",
+    "sources": "https://github.com/CodeF53/CardinalIceBoats",
+    "issues": "https://github.com/CodeF53/CardinalIceBoats/issues"
+  },
+  "license": "CC0",
+  "icon": "assets/cardinalboats/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.cardinalboats.CardinalBoatsInit"
+    ],
+    "modmenu": [
+      "net.cardinalboats.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "cardinalboats.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric": "*",
+    "minecraft": "*",
+    "java": ">=17"
+  }
+}

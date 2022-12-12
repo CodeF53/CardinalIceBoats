@@ -1,12 +1,20 @@
-![# Cardinal Ice Boats](Banner.png)
+![# Cardinal Ice Boats](https://github.com/CodeF53/CardinalIceBoats/raw/1.19/Banner.png)
 
 ## About
 
-Single Mixin mod that makes boats snap to facing North/South/East/West (and 45 degree angles) when placed on ice.
+Provides Several QOL Utilities for ice boating:
 
-Works serverside or clientside!\
-**WARNING: when installed client-side the mod sends potentially suspicious packets and may lead to a ban, ask for permission before using on servers**
+## Features:
 
-## License
+### Universal Features:
+Work when installed on the server or the client!\
+**Placement Snapping:**\
+Boats will snap to facing North/South/East/West (and 45 degree angles) when placed on ice.
 
-This Mod is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+###  Client Exclusive Features:
+**Turn Priming:**\
+Pressing the left or right arrow<sup>(configurable in the controls menu)</sup> will prime a turn. When your turn comes up, your boat will stop and rotate 90 degrees automatically!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pn4UsN_QQ1w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+**Manual Snapping:**\
+Somehow get your boat out of its cardinal orientation? Pressing the up arrow<sup>(configurable in the controls menu)</sup> will snap your boat back to the nearest Cardinal (or 45 degree) direction!

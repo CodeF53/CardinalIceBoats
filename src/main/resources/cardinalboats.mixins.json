@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.cardinalboats.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "ClientBoatPlacementSnap"
+  ],
+  "server": [
+    "ServerBoatPlacementSnap"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
