@@ -1,6 +1,7 @@
 package net.cardinalboats;
 
 import net.cardinalboats.config.ModConfig;
+import net.cardinalboats.mixin.BoatDeltaRotationAccessor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -21,7 +22,7 @@ public class Util {
 
     public static void rotateBoat(Boat boat, Float rotation, Boolean maintainVelocity) {
         boat.setYRot(rotation);
-        boat.deltaRotation = 0;
+        ((BoatDeltaRotationAccessor) boat).setDeltaRotation(0);
         boat.getControllingPassenger().setYRot(boat.getYRot());
 
         if (maintainVelocity) {

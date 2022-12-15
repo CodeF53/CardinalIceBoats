@@ -15,10 +15,6 @@ repositories {
 	maven { url "https://maven.terraformersmc.com/releases/" }
 }
 
-loom {
-	accessWidenerPath = file("src/main/resources/cardinalboats.accesswidener")
-}
-
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
