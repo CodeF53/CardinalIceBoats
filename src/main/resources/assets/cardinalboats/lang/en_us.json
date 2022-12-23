@@ -26,7 +26,7 @@
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.boolean.false" : "§6Four-Way",
 
   "text.autoconfig.CardinalBoat.option.moveWhileChatting" : "Keep Moving While Chatting",
-  "text.autoconfig.CardinalBoat.option.moveWhileChatting.@Tooltip" : "Tooltip not final.",
+  "text.autoconfig.CardinalBoat.option.moveWhileChatting.@Tooltip" : "Allows you to chat while driving a boat.\nIf you open the chat while moving forward, it keeps moving forward for you.\n§mDon't text and drive.",
 
   "text.autoconfig.CardinalBoat.title" : "Cardinal Ice Boats Config"
 }
