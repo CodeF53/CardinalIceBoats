@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 
 public class CardinalBoatsInit implements ClientModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger("modid");
+
+	public static boolean LieAboutMovingForward = false;
+
 	@Override
 	public void onInitializeClient() {
 		TurnPriming.init();

@@ -25,6 +25,8 @@
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.boolean.true" : "§bEight-Way",
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.boolean.false" : "§6Four-Way",
 
+  "text.autoconfig.CardinalBoat.option.moveWhileChatting" : "Keep Moving While Chatting",
+  "text.autoconfig.CardinalBoat.option.moveWhileChatting.@Tooltip" : "Tooltip not final.",
 
   "text.autoconfig.CardinalBoat.title" : "Cardinal Ice Boats Config"
 }
