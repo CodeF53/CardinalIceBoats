@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import static net.cardinalboats.CardinalBoatsInit.LieAboutMovingForward;
 
-@Mixin(Minecraft.class)
+@Mixin(value = Minecraft.class, priority = 1000)
 public abstract class ChatMoveStartLying {
     @Shadow @Nullable public LocalPlayer player;
     @Shadow protected abstract void openChatScreen(String string);
