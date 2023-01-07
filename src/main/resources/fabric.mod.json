@@ -16,16 +16,11 @@
   "icon": "assets/cardinalboats/icon.png",
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "net.cardinalboats.CardinalBoatsInit"
-    ],
-    "modmenu": [
-      "net.cardinalboats.config.ModMenuIntegration"
-    ]
+    "client": [ "net.cardinalboats.CardinalBoatsInit" ],
+    "preLaunch": [ "com.llamalad7.mixinextras.MixinExtrasBootstrap::init" ],
+    "modmenu": [ "net.cardinalboats.config.ModMenuIntegration" ]
   },
-  "mixins": [
-    "cardinalboats.mixins.json"
-  ],
+  "mixins": [ "cardinalboats.mixins.json" ],
   "depends": {
     "fabricloader": ">=0.14.11",
     "fabric": "*",

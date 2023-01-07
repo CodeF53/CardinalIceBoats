@@ -8,17 +8,17 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.cardinalboats.CardinalBoatsInit.LieAboutMovingForward;
 
 @Mixin(value = Minecraft.class, priority = 1000)
 public abstract class ChatMoveStartLying {
     @Shadow @Nullable public LocalPlayer player;
-    @Shadow protected abstract void openChatScreen(String string);
 
-    @Redirect(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openChatScreen(Ljava/lang/String;)V"))
-    void moveChatBoi(Minecraft instance, String string) {
+    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openChatScreen(Ljava/lang/String;)V"))
+    void moveChatBoi(CallbackInfo ci) {
         // on opening the chat
         assert this.player != null;
 
@@ -29,6 +29,5 @@ public abstract class ChatMoveStartLying {
                 LieAboutMovingForward = true;
             }
         }
-        openChatScreen(string);
     }
 }
