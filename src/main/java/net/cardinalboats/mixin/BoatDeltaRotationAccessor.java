@@ -1,11 +1,11 @@
 package net.cardinalboats.mixin;
 
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.entity.vehicle.BoatEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(Boat.class)
+@Mixin(BoatEntity.class)
 public interface BoatDeltaRotationAccessor {
-    @Accessor("deltaRotation")
-    void setDeltaRotation(float deltaRotation);
+    @Accessor("yawVelocity")
+    void setYawVelocity(float yawVelocity);
 }

@@ -1,9 +1,9 @@
 package net.cardinalboats.mixin;
 
 import net.cardinalboats.config.ModConfig;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.entity.vehicle.BoatEntity;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -13,18 +13,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import static net.cardinalboats.CardinalBoatsInit.LieAboutMovingForward;
 
-@Mixin(value = Minecraft.class, priority = 1000)
+@Mixin(value = MinecraftClient.class, priority = 1000)
 public abstract class ChatMoveStartLying {
-    @Shadow @Nullable public LocalPlayer player;
+    @Shadow @Nullable public ClientPlayerEntity player;
 
-    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openChatScreen(Ljava/lang/String;)V"))
+    @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;openChatScreen(Ljava/lang/String;)V"))
     void moveChatBoi(CallbackInfo ci) {
         // on opening the chat
         assert this.player != null;
 
-        if (player.getVehicle() instanceof Boat && ModConfig.getInstance().moveWhileChatting) {
+        if (player.getVehicle() instanceof BoatEntity && ModConfig.getInstance().moveWhileChatting) {
             // if the player is holding W
-            if (Minecraft.getInstance().options.keyUp.isDown()) {
+            if (MinecraftClient.getInstance().options.forwardKey.isPressed()) {
                 // lie and tell the server that we are still moving forward despite having chat open
                 LieAboutMovingForward = true;
             }

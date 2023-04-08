@@ -1,18 +1,18 @@
 package net.cardinalboats;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import net.cardinalboats.config.ModConfig;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.util.InputUtil;
+import net.minecraft.entity.vehicle.BoatEntity;
 
 public class ManualSnap {
-    public static final KeyMapping manualSnapKey = new KeyMapping(
+    public static final KeyBinding manualSnapKey = new KeyBinding(
             "key.cardinalboats.snapManual",
-            InputConstants.Type.KEYSYM,
-            InputConstants.KEY_UP,
+            InputUtil.Type.KEYSYM,
+            InputUtil.GLFW_KEY_UP,
             "category.cardinalboats.key_category_title"
     );
 
@@ -23,13 +23,13 @@ public class ManualSnap {
         ClientTickEvents.END_CLIENT_TICK.register(ManualSnap::tick);
     }
 
-    public static void tick(Minecraft minecraft) {
-        if (minecraft.player != null && minecraft.player.isPassenger() && minecraft.player.getVehicle() instanceof Boat boat && Util.isIce(boat.getBlockStateOn())) {
-            while (manualSnapKey.consumeClick()) {
-                Util.rotateBoat(boat, Util.roundYRot(boat.getYRot(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
+    public static void tick(MinecraftClient minecraft) {
+        if (minecraft.player != null && minecraft.player.hasVehicle() && minecraft.player.getVehicle() instanceof BoatEntity boat && Util.isIce(boat.getSteppingBlockState())) {
+            while (manualSnapKey.wasPressed()) {
+                Util.rotateBoat(boat, Util.roundYRot(boat.getYaw(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
             }
         } else {
-            while (manualSnapKey.consumeClick()) {}
+            while (manualSnapKey.wasPressed()) {}
         }
     }
 }

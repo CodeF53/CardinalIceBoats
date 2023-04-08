@@ -1,14 +1,5 @@
 package net.cardinalboats.mixin;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BoatItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -17,12 +8,21 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.cardinalboats.Util.roundYRot;
 import static net.cardinalboats.Util.shouldSnap;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BoatItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.c2s.play.PlayerMoveC2SPacket;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.world.World;
+
 @Mixin(BoatItem.class)
 public class ClientBoatPlacementSnap {
     @Inject(method = "use", at = @At(value = "HEAD"))
-    private void clientBoatSnap(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+    private void clientBoatSnap(World level, PlayerEntity player, Hand interactionHand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         if (shouldSnap(level, player)) {
-            Minecraft.getInstance().player.connection.send(new ServerboundMovePlayerPacket.Rot(roundYRot(player.getYRot(), 45), player.getXRot(), player.isOnGround()));
+            MinecraftClient.getInstance().player.networkHandler.sendPacket(new PlayerMoveC2SPacket.LookAndOnGround(roundYRot(player.getYaw(), 45), player.getPitch(), player.isOnGround()));
         }
     }
 }
