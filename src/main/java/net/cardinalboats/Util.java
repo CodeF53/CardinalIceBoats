@@ -40,6 +40,8 @@ public class Util {
     }
 
     public static void ClientChatLog(ClientPlayerEntity player, String message) {
+        if (player == null) return;
+
         if (ModConfig.getInstance().doChatShit) {
             player.sendMessage(Text.of("[cardinalboats] " + message), false);
         }
