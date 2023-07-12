@@ -16,9 +16,17 @@ public class ManualSnap {
             "category.cardinalboats.key_category_title"
     );
 
+    public static final KeyBinding snap180 = new KeyBinding(
+        "key.cardinalboats.snap180",
+        InputUtil.Type.KEYSYM,
+        InputUtil.GLFW_KEY_DOWN,
+        "category.cardinalboats.key_category_title"
+    );
+
     // Run by fabric initializer
     public static void init() {
         KeyBindingHelper.registerKeyBinding(manualSnapKey);
+        KeyBindingHelper.registerKeyBinding(snap180);
 
         ClientTickEvents.END_CLIENT_TICK.register(ManualSnap::tick);
     }
@@ -28,8 +36,11 @@ public class ManualSnap {
             while (manualSnapKey.wasPressed()) {
                 Util.rotateBoat(boat, Util.roundYRot(boat.getYaw(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
             }
+            while (snap180.wasPressed()) {
+                Util.rotateBoat(boat, boat.getYaw() % 360 - 180, ModConfig.getInstance().maintainVelocityOnTurns);
+            }
         } else {
-            while (manualSnapKey.wasPressed()) {}
+            while (manualSnapKey.wasPressed() || snap180.wasPressed()) {}
         }
     }
 }
