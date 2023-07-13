@@ -3,6 +3,7 @@
 
   "key.cardinalboats.snapManual" : "Re-Snap",
   "key.cardinalboats.snap180" : "Instant Reverse",
+  "key.cardinalboats.smartCenter" : "Smart Center",
 
   "key.cardinalboats.prime_left": "Prime Left Turn",
   "key.cardinalboats.prime_right": "Prime Right Turn",
@@ -25,6 +26,15 @@
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.@Tooltip" : "§bEight-Way§r - Pressing Snap Key will align boat to nearest 45°\n§6Four-Way§r - Pressing Snap Key will align boat to nearest 90°",
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.boolean.true" : "§bEight-Way",
   "text.autoconfig.CardinalBoat.option.eightWaySnapKey.boolean.false" : "§6Four-Way",
+
+  "text.autoconfig.CardinalBoat.option.alwaysSmartCenter" : "Always Smart Center",
+  "text.autoconfig.CardinalBoat.option.alwaysSmartCenter.@Tooltip" : "Runs smart center all the time when boat is perfectly cardinally aligned",
+
+  "text.autoconfig.CardinalBoat.option.smartCenterLookAhead" : "Smart Center Lookahead",
+  "text.autoconfig.CardinalBoat.option.smartCenterLookAhead.@Tooltip" : "Number of blocks ahead of you that smart center scans for walls.",
+
+  "text.autoconfig.CardinalBoat.option.smartCenterPrimedTurn" : "Smart Center on Primed Turns",
+  "text.autoconfig.CardinalBoat.option.smartCenterPrimedTurn.@Tooltip" : "Boat will automatically smart center itself after taking a primed turn",
 
   "text.autoconfig.CardinalBoat.option.moveWhileChatting" : "Keep Moving While Chatting",
   "text.autoconfig.CardinalBoat.option.moveWhileChatting.@Tooltip" : "Allows you to chat while driving a boat.\nIf you open the chat while moving forward, it keeps moving forward for you.\n§mDon't text and drive.",

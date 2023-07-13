@@ -22,6 +22,16 @@ public class ModConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean moveWhileChatting = true;
 
+    @ConfigEntry.Gui.Tooltip
+    public boolean alwaysSmartCenter = false;
+
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(min = 1, max = 10)
+    public int smartCenterLookAhead = 5;
+
+    @ConfigEntry.Gui.Tooltip
+    public boolean smartCenterPrimedTurn = true;
+
     public static void init() {
         AutoConfig.register(ModConfig.class, Toml4jConfigSerializer::new);
     }
