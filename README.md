@@ -23,7 +23,7 @@ If your boat gets out of its cardinal orientation, pressing <kbd>⬆</kbd><sup>[
 Need to turn around? Pressing <kbd>⬇</kbd><sup>[*](#configurable-controls)</sup> will instantly rotate your boat 180 degrees!
 
 #### Smart Centering:
-Pressing <kbd>&#92;</kbd><sup>[*](#configurable-controls)</sup> will instantly center your boat on the ice. If you're near a wall, you will be nudged _off-center_ just enough to avoid crashing into it. This automatically happens after every turn by default.
+Pressing <kbd>&#92;</kbd><sup>[*](#configurable-controls)</sup> will instantly center your boat on the ice. If you're near a wall, you will instead be nudged _off-center_ just enough to avoid crashing into it. This also automatically happens after every turn by default.
 
 #### Configurable Controls:
 All keybinds can be configured in the vanilla controls menu!
