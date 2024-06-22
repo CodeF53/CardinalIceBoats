@@ -1,4 +1,4 @@
-![# Cardinal Ice Boats](https://github.com/CodeF53/CardinalIceBoats/raw/1.19/Banner.png)
+![# Cardinal Ice Boats](https://github.com/CodeF53/CardinalIceBoats/raw/main/Banner.png)
 
 ## About
 Provides Several QOL Utilities for ice boating:
