@@ -1,7 +1,6 @@
 package net.cardinalboats;
 
 import net.cardinalboats.config.ModConfig;
-import net.cardinalboats.mixin.BoatDeltaRotationAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +19,7 @@ public class Util {
 
     public static void rotateBoat(BoatEntity boat, Float rotation, Boolean maintainVelocity) {
         boat.setYaw(rotation);
-        ((BoatDeltaRotationAccessor) boat).setYawVelocity(0);
+        boat.yawVelocity = 0;
         boat.getControllingPassenger().setYaw(boat.getYaw());
 
         if (maintainVelocity) {
