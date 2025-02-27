@@ -4,7 +4,7 @@ import net.cardinalboats.config.ModConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -17,7 +17,7 @@ import static net.minecraft.util.math.MathHelper.RADIANS_PER_DEGREE;
 public class Util {
     private static final Pattern icePattern = Pattern.compile("(\\b|_)ice\\b", Pattern.CASE_INSENSITIVE);
 
-    public static void rotateBoat(BoatEntity boat, Float rotation, Boolean maintainVelocity) {
+    public static void rotateBoat(AbstractBoatEntity boat, Float rotation, Boolean maintainVelocity) {
         boat.setYaw(rotation);
         boat.yawVelocity = 0;
         boat.getControllingPassenger().setYaw(boat.getYaw());

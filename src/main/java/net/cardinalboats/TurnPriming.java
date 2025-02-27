@@ -9,7 +9,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -59,7 +59,7 @@ public class TurnPriming {
     private static boolean rTurnPrimed = false;
 
     public static void tick(MinecraftClient minecraft) {
-        if (minecraft.player != null && minecraft.player.hasVehicle() && minecraft.player.getVehicle() instanceof BoatEntity boat) {
+        if (minecraft.player != null && minecraft.player.hasVehicle() && minecraft.player.getVehicle() instanceof AbstractBoatEntity boat) {
             if (Util.isIce(boat.getSteppingBlockState())) {
                 ClientPlayerEntity player = minecraft.player;
 
@@ -123,7 +123,7 @@ public class TurnPriming {
         put(WEST,  new int[][]{{ 0, 0}, { 1, 0}, { 2, 0}});
     }};
 
-    public static boolean shouldTurn(BoatEntity boat, ClientWorld level, boolean left) {
+    public static boolean shouldTurn(AbstractBoatEntity boat, ClientWorld level, boolean left) {
         int rootX = boat.getBlockX();
         int rootY = boat.getBlockY() - 1;
         int rootZ = boat.getBlockZ();
@@ -151,7 +151,7 @@ public class TurnPriming {
         return false;
     }
 
-    public static void smartCenter(BoatEntity boat) {
+    public static void smartCenter(AbstractBoatEntity boat) {
         World world = boat.getWorld();
         Direction direction = boat.getHorizontalFacing();
         int rootX = boat.getBlockX();

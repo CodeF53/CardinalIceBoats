@@ -3,7 +3,7 @@ package net.cardinalboats.mixin;
 import net.cardinalboats.config.ModConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,7 +22,7 @@ public abstract class ChatMoveStartLying {
         // on opening the chat
         assert this.player != null;
 
-        if (player.getVehicle() instanceof BoatEntity && ModConfig.getInstance().moveWhileChatting) {
+        if (player.getVehicle() instanceof AbstractBoatEntity && ModConfig.getInstance().moveWhileChatting) {
             // if the player is holding W
             if (MinecraftClient.getInstance().options.forwardKey.isPressed()) {
                 // lie and tell the server that we are still moving forward despite having chat open

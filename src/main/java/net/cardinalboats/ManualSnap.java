@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.entity.vehicle.AbstractBoatEntity;
 
 public class ManualSnap {
     public static final KeyBinding manualSnapKey = new KeyBinding(
@@ -32,7 +32,7 @@ public class ManualSnap {
     }
 
     public static void tick(MinecraftClient minecraft) {
-        if (minecraft.player != null && minecraft.player.hasVehicle() && minecraft.player.getVehicle() instanceof BoatEntity boat && Util.isIce(boat.getSteppingBlockState())) {
+        if (minecraft.player != null && minecraft.player.hasVehicle() && minecraft.player.getVehicle() instanceof AbstractBoatEntity boat && Util.isIce(boat.getSteppingBlockState())) {
             while (manualSnapKey.wasPressed()) {
                 Util.rotateBoat(boat, Util.roundYRot(boat.getYaw(), ModConfig.getInstance().eightWaySnapKey? 45:90), true);
             }
