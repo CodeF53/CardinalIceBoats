@@ -1,9 +1,5 @@
-import org.anti_ad.gradle.plugins.libipn.base.modId
-
 val cloth_config_version: String by project
-logger.lifecycle("""
-    mod-id: $modId
-""".trimIndent())
+
 repositories {
     maven ("https://maven.shedaniel.me/")
 }
@@ -18,11 +14,13 @@ configurations.all {
 }
 
 plugins {
-    id("libipn-gradle")
+    alias(libs.plugins.libipnGradle)
 }
 
 libIPN {
+    this.enableShadow = false
+    this.enableProGuard = false
     jarPostProcessConfig = {
-        this.advzipArguments = mutableListOf("-4", "-z", "-i", "100")
+        this.advzipArguments = listOf("-4", "-z", "-i", "100")
     }
 }

@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.shadow) apply false
     alias(libs.plugins.loom) apply false
-    id("libipn-gradle") version "1.0.0-SNAPSHOT" apply false
+    alias(libs.plugins.libipnGradle) apply false
 }
 
 configurations.all {
@@ -16,7 +16,7 @@ configurations.all {
 
 
 subprojects {
-    group = "org.anti_ad.mc"
+    group = "net.cardinalboats"
     apply {
         plugin(rootProject.libs.plugins.detekt.get().pluginId)
     }
@@ -24,7 +24,7 @@ subprojects {
     detekt {
         config.setFrom(rootProject.files("config/detekt/detekt.yml"))
     }
-    version = "1.0.0"
+    version = "2.0.0"
 
 }
 
