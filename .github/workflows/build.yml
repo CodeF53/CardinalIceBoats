@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: install advzip
-        run: apt install advzip
+        run: sudo apt-get install advzip
       - name: checkout repository
         uses: actions/checkout@v4
       - name: validate gradle wrapper
