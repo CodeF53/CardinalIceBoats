@@ -16,6 +16,8 @@ jobs:
         os: [ubuntu-22.04]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: install advzip
+        run: apt install advzip
       - name: checkout repository
         uses: actions/checkout@v4
       - name: validate gradle wrapper
@@ -33,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
-          path: build/libs/
+          path: build/optimized-mod/
