@@ -32,9 +32,9 @@ libIPN {
 
 afterEvaluate {
     modrinth {
-        val mod_loader = libIPN.modLoader.get()
-        val mod_version = libIPN.modVersion.get()
-        val minecraft_version = libIPN.supportedMinecraftVersionMin.get()
+        val mod_loader = libIPN.modLoader.get().removeSurrounding("\"")
+        val mod_version = libIPN.modVersion.get().removeSurrounding("\"")
+        val minecraft_version = libIPN.supportedMinecraftVersionMin.get().removeSurrounding("\"")
 
         this.failSilently.set(true)
 
@@ -46,10 +46,12 @@ afterEvaluate {
         versionNumber.set("$mod_loader-$minecraft_version-$mod_version") // Will fail if Modrinth has this version already
         val postprocessedremappedJarFile = tasks.named<JarPostProcess>("libIPN-JarPostProcess").get().outputs.files.first()
         uploadFile.set(postprocessedremappedJarFile as Any) // This is the java jar task. If it can't find the jar, try 'jar.outputs.getFiles().asPath' in place of 'jar'
-        gameVersions.add(minecraft_version)
+        logger.lifecycle("Modrinth upload file: ${postprocessedremappedJarFile.path}")
+        gameVersions.addAll(listOf(minecraft_version))
         logger.lifecycle("""
         +*************************************************+
         Will release ${postprocessedremappedJarFile.path}
+        For $mod_loader $minecraft_version
         +*************************************************+
         """.trimIndent())
         versionName.set("CardinalIceBoats $mod_version for $mod_loader $minecraft_version")
