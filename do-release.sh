@@ -47,16 +47,24 @@ fi
 
 git clone ${PROJECT_URL} ${PROJECT_NAME}
 
-if [[ ! -e ../venv ]]; then
-  python -m venv ../venv
-  . ../venv/bin/activate
+#cd ${PROJECT_NAME}
+
+if [[ ! -e ./venv ]]; then
+  echo creating venv....
+  python -m venv ./venv
+  . ./venv/bin/activate
   pip install pandoc
   pip install pypandoc
   pip install premailer
   pip install pandoc_include
+  echo created
 else
-  . ../venv/bin/activate
+  echo venv alreadu exists
+  . ./venv/bin/activate
 fi
+
+echo "after venv create"
+read 
 
 cd ${PROJECT_NAME}/description
 

@@ -46,7 +46,7 @@ afterEvaluate {
         versionNumber.set("$mod_loader-$minecraft_version-$mod_version") // Will fail if Modrinth has this version already
         val postprocessedremappedJarFile = tasks.named<JarPostProcess>("libIPN-JarPostProcess").get().outputs.files.first()
         uploadFile.set(postprocessedremappedJarFile as Any) // This is the java jar task. If it can't find the jar, try 'jar.outputs.getFiles().asPath' in place of 'jar'
-        gameVersions.addAll(minecraft_version)
+        gameVersions.add(minecraft_version)
         logger.lifecycle("""
         +*************************************************+
         Will release ${postprocessedremappedJarFile.path}
