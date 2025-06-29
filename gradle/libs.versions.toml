@@ -1,0 +1,16 @@
+[versions]
+detekt = "1+"
+kotlin = "2.0.21"
+shadowVer = "8.+"
+loomVer = "1.10-SNAPSHOT"
+libipnGradleVer = "1.0.0-SNAPSHOT"
+modrinthVer = "2.+"
+
+[plugins]
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+kotlinSer = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+shadow = { id = "com.gradleup.shadow", version.ref = "shadowVer"}
+loom = { id = "fabric-loom", version.ref = "loomVer"}
+libipnGradle = { id = "libipn-gradle", version.ref = "libipnGradleVer" }
+modrinth = { id = "com.modrinth.minotaur",  version.ref = "modrinthVer"}
