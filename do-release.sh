@@ -60,7 +60,7 @@ fi
 
 cd ${PROJECT_NAME}/description
 
-python build_html.py
+#python build_html.py
 python build_release_notes.py
 
 cd ..
