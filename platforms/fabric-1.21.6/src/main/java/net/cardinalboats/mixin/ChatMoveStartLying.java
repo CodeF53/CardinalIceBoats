@@ -14,18 +14,21 @@ import static net.cardinalboats.UtilKt.lieAboutMovingForward;
 
 @Mixin(value = MinecraftClient.class, priority = 1000)
 public abstract class ChatMoveStartLying {
-    @Shadow @Nullable public ClientPlayerEntity player;
+
+    @Shadow
+    @Nullable
+    public ClientPlayerEntity player;
 
     @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;openChatScreen(Ljava/lang/String;)V"))
     void moveChatBoi(CallbackInfo ci) {
         // on opening the chat
-        assert this.player != null;
-
-        if (player.getVehicle() instanceof AbstractBoatEntity && CIBConfig.getInstance().moveWhileChatting) {
-            // if the player is holding W
-            if (MinecraftClient.getInstance().options.forwardKey.isPressed()) {
-                // lie and tell the server that we are still moving forward despite having chat open
-                lieAboutMovingForward = true;
+        if (this.player != null) {
+            if (player.getVehicle() instanceof AbstractBoatEntity && CIBConfig.getInstance().moveWhileChatting) {
+                // if the player is holding W
+                if (MinecraftClient.getInstance().options.forwardKey.isPressed()) {
+                    // lie and tell the server that we are still moving forward despite having chat open
+                    lieAboutMovingForward = true;
+                }
             }
         }
     }

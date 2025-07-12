@@ -23,6 +23,10 @@ public class CIBConfig implements ConfigData {
     public boolean moveWhileChatting = true;
 
     @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 2*20) //max 2 seconds
+    public int ticksToMoveAfterChatHides = 15; // one and a half seconds
+
+    @ConfigEntry.Gui.Tooltip
     public boolean alwaysSmartCenter = false;
 
     @ConfigEntry.Gui.Tooltip

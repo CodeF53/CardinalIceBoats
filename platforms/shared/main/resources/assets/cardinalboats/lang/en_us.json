@@ -39,5 +39,8 @@
   "text.autoconfig.CardinalBoat.option.moveWhileChatting" : "Keep Moving While Chatting",
   "text.autoconfig.CardinalBoat.option.moveWhileChatting.@Tooltip" : "Allows you to chat while driving a boat.\nIf you open the chat while moving forward, it keeps moving forward for you.\n§mDon't text and drive.",
 
+  "text.autoconfig.CardinalBoat.option.ticksToMoveAfterChatHides" : "Ticks to continue moving after chat closes",
+  "text.autoconfig.CardinalBoat.option.ticksToMoveAfterChatHides.@Tooltip" : "The number of ticks to continue moving forward after closing the chat.\nThis will give you time to press 'W' after closing the chat window.\n20 ticks = 1 second.",
+
   "text.autoconfig.CardinalBoat.title" : "Cardinal Ice Boats Config"
 }

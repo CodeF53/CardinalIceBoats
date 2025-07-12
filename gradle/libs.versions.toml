@@ -1,6 +1,6 @@
 [versions]
 detekt = "1+"
-kotlin = "2.0.21"
+kotlin = "2.1.21"
 shadowVer = "8.+"
 loomVer = "1.10-SNAPSHOT"
 libipnGradleVer = "1.0.0-SNAPSHOT"

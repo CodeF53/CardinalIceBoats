@@ -11,7 +11,7 @@ repositories {
 
 
 dependencies {
-    modImplementation ("me.shedaniel.cloth:cloth-config-fabric:$cloth_config_version")
+    implementation ("me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version")
 }
 
 configurations.all {
@@ -31,11 +31,14 @@ libIPN {
     }
     val deployVersionsMap = mutableMapOf(DeploySites.MODRINTH to listOf("1.21.6", "1.21.7"),
                                          DeploySites.CURSEFORGE to listOf("1.21.6", "1.21.7"))
+
     supportedMCVersions.set(deployVersionsMap)
+
 }
 
-
 afterEvaluate {
+
+
     modrinth {
         val mod_loader = libIPN.modLoader.get().removeSurrounding("\"")
         val mod_version = libIPN.modVersion.get().removeSurrounding("\"")
@@ -65,10 +68,10 @@ afterEvaluate {
         }
 
         loaders.add(mod_loader)
-        dependencies.set(mutableListOf(ModDependency("P7dR8mSH", "required"),
-                                       ModDependency("Ha28R6CL", "required"),
-                                       ModDependency("9s6osm5g", "required"),
-                                       ModDependency("mOgUt4GM", "optional")))
+        //ordsPcFz   -> kotlin for forge
+        //9s6osm5g   -> cloth config api
+        dependencies.set(mutableListOf(ModDependency("ordsPcFz", "required"),
+                                       ModDependency("9s6osm5g", "required")))
 
         this.versionType.set(VersionType.RELEASE.name)
     }

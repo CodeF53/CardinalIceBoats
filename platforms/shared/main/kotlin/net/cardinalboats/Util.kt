@@ -1,20 +1,15 @@
 package net.cardinalboats
 
+import net.cardinalboats.alias.*
 import net.cardinalboats.config.CIBConfig
-import net.minecraft.block.BlockState
-import net.minecraft.client.network.ClientPlayerEntity
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.vehicle.AbstractBoatEntity
-import net.minecraft.text.Text
-import net.minecraft.util.hit.BlockHitResult
-import net.minecraft.util.hit.HitResult
-import net.minecraft.util.math.Vec3d
-import net.minecraft.world.World
-import java.util.regex.Pattern
 
-import net.minecraft.util.math.MathHelper.RADIANS_PER_DEGREE
+import java.util.regex.Pattern
+import kotlin.math.roundToInt
 
 private val icePattern = Pattern.compile("(\\b|_)ice\\b", Pattern.CASE_INSENSITIVE)
+
+
+private val logger = LogUtils.getLogger()
 
 @JvmField
 public var lieAboutMovingForward = false;
@@ -34,6 +29,7 @@ fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Bool
     } else {
         boat.velocity = Vec3d.ZERO
     }
+    logger.info("Rotating boat ${boat.uuid} to $rotation, new velocity: ${boat.velocity}")
 }
 
 fun isIce(blockState: BlockState): Boolean {
@@ -44,7 +40,7 @@ fun clientChatLog(player: ClientPlayerEntity?, message: String) {
     if (player == null) return
 
     if (CIBConfig.getInstance().doChatShit) {
-        player.sendMessage(Text.of("[cardinalboats] $message"), false)
+        player.sendMessage(Text.literal("[cardinalboats] $message"), false)
     }
 }
 
@@ -52,7 +48,7 @@ fun clientChatLog(player: ClientPlayerEntity?, message: String) {
 fun shouldSnap(level: World, player: PlayerEntity): Boolean {
     // If we are putting a boat on a block
     val lookingAt = player.raycast(20.0, 0.0f, false)
-    if (lookingAt != null && lookingAt.type == HitResult.Type.BLOCK) {
+    if (lookingAt != null && lookingAt.type == HitResultType.BLOCK) {
         // If that block is ice, return true
         return isIce(level.getBlockState((lookingAt as BlockHitResult).blockPos))
     }
@@ -61,5 +57,6 @@ fun shouldSnap(level: World, player: PlayerEntity): Boolean {
 
 @Suppress("MagicNumber")
 fun roundYRot(yRot: Float, toNearest: Int): Float {
-    return (Math.round(yRot % 360 / toNearest) * toNearest).toFloat()
+    return ((yRot % 360 / toNearest).roundToInt() * toNearest).toFloat()
 }
+
