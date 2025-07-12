@@ -48,7 +48,6 @@ val GLFW_KEY_LEFT = InputConstants.KEY_LEFT
 val GLFW_KEY_RIGHT = InputConstants.KEY_RIGHT
 val GLFW_KEY_BACKSLASH = InputConstants.KEY_BACKSLASH
 
-private val logger = LogUtils.getLogger()
 
 val Entity.steppingBlockState
     get() = this.blockStateOn
@@ -88,6 +87,7 @@ var Entity.velocity: Vec3d
 fun Entity.raycast(d: Double, f: Float, b: Boolean) = this.pick(d, f, b)
 
 @JvmField
+@Suppress("MagicNumber")
 val RADIANS_PER_DEGREE = (Math.PI.toFloat() / 180f);
 
 fun Vec3.rotateY(y: Float) = this.yRot(y)

@@ -2,12 +2,9 @@ package net.cardinalboats
 
 import net.cardinalboats.config.CIBConfig
 import net.cardinalboats.alias.*
-import net.minecraft.world.waypoints.WaypointTransmitter
 
 @Suppress("MagicNumber")
 object TurnPriming: TurnPrimingBase {
-
-    private val logger = LogUtils.getLogger()
 
     override val lQueueKey = KeyBinding(
         "key.cardinalboats.prime_left",

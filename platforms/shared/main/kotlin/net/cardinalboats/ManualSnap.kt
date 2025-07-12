@@ -5,13 +5,10 @@ import net.cardinalboats.alias.MinecraftClient
 import net.cardinalboats.config.CIBConfig
 import net.cardinalboats.alias.KeyBinding
 import net.cardinalboats.alias.InputUtilType
-import net.cardinalboats.alias.InputUtil
 import net.cardinalboats.alias.*
 
 
 object ManualSnap: ManualSnapBase {
-
-    private val logger = LogUtils.getLogger()
 
     override val manualSnapKey = KeyBinding("key.cardinalboats.snapManual",
                                             InputUtilType.KEYSYM,
