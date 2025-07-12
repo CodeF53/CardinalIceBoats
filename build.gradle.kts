@@ -24,7 +24,7 @@ subprojects {
     detekt {
         config.setFrom(rootProject.files("config/detekt/detekt.yml"))
     }
-    version = "2.0.0"
+    version = "2.0.1"
 
 }
 
