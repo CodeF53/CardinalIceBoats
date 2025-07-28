@@ -29,6 +29,8 @@ jobs:
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
+      - name: Set env
+        run: echo "_JAVA_OPTIONS=-Xmx8G" >> $GITHUB_ENV
       - name: build
         run: ./gradlew build
       - name: capture build artifacts
