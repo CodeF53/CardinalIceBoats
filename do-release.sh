@@ -63,9 +63,6 @@ else
   . ./venv/bin/activate
 fi
 
-echo "after venv create"
-read 
-
 cd ${PROJECT_NAME}/description
 
 #python build_html.py

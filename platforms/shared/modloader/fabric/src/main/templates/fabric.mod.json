@@ -1,0 +1,24 @@
+{
+    "schemaVersion": 1,
+    "id": "${MODID}",
+    "version": ${VERSION},
+    "name": ${DISPLAY_NAME},
+    "description": ${DESCRIPTION},
+    ${AUTHORS}
+    ${CONTRIBUTORS}
+    "contact": {
+        "homepage": ${WIKI},
+        "issues": ${ISSUES}
+    },
+    "license": ${LICENSE},
+    "icon": ${ICON},
+    "environment": "client",
+    "entrypoints": {
+        ${ENTRY_POINTS}
+    },
+    ${MIXINS}
+    ${ACCESS_WIDENER}
+    "depends": {
+        ${GENERATED_DEPENDENCIES}
+    }
+}
