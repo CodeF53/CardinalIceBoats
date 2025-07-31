@@ -6,11 +6,11 @@ import net.cardinalboats.TurnPriming.smartCenterKey
 import net.cardinalboats.alias.KeyBinding
 import net.cardinalboats.alias.MinecraftClient
 import net.cardinalboats.generated.ModInfo
-import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
-import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent
+import net.minecraftforge.event.TickEvent
+import net.minecraftforge.eventbus.api.SubscribeEvent
+import net.minecraftforge.fml.common.Mod
+import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 
 interface TurnPrimingBase {
 
@@ -20,14 +20,14 @@ interface TurnPrimingBase {
 
     fun init() {
 
-        FORGE_BUS.addListener { event: ClientTickEvent.Post ->
+        FORGE_BUS.addListener { event: TickEvent.ClientTickEvent ->
             tick(MinecraftClient.getInstance())
         }
     }
 
     fun tick(minecraft: MinecraftClient)
 
-    @EventBusSubscriber(modid = ModInfo.MOD_ID)
+    @Mod.EventBusSubscriber(modid = ModInfo.MOD_ID)
     companion object {
         @SubscribeEvent
         fun onKeyRegister(event: RegisterKeyMappingsEvent) {

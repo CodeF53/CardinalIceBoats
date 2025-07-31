@@ -87,7 +87,9 @@ dependencyResolutionManagement {
 rootProject.name = "CardinalIceBoats"
 
 include(":platforms:fabric-1.21.6")
+include(":platforms:forge-1.21.1")
 include(":platforms:neoforge-1.21.6")
+include(":platforms:neoforge-1.21.1")
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.+"

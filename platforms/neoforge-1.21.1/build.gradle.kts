@@ -1,4 +1,3 @@
-import com.modrinth.minotaur.dependencies.ModDependency
 import masecla.modrinth4j.model.version.ProjectVersion.*
 
 val cloth_config_version: String by project
@@ -6,7 +5,6 @@ val cloth_config_version: String by project
 repositories {
     maven ("https://maven.shedaniel.me/")
 }
-
 
 dependencies {
     implementation ("me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version")
@@ -17,20 +15,17 @@ plugins {
 }
 
 libIPN {
-    enableShadow = false
-    enableProGuard = false
+    this.enableShadow = false
+    this.enableProGuard = false
     jarPostProcessConfig = {
-        advzipArguments = listOf("-4", "-z", "-i", "100")
+        this.advzipArguments = listOf("-4", "-z", "-i", "100")
     }
 }
 
 afterEvaluate {
     modrinth {
-        failSilently.set(true)
-        debugMode = true
-        if (debugMode.get()) {
-            token.set("INVALID")
-        }
+        this.failSilently.set(true)
+
         if (System.getenv("IPNEXT_RELEASE") != null) {
             token.set(System.getenv("MODRINTH_TOKEN"))
         }

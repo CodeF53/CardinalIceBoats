@@ -6,8 +6,10 @@ plugins {
     alias(libs.plugins.kotlinSer) apply false
     alias(libs.plugins.detekt)
     alias(libs.plugins.shadow) apply false
-    alias(libs.plugins.loom) apply false
+    //alias(libs.plugins.loom) apply false
     alias(libs.plugins.libipnGradle)
+
+    id("net.minecraftforge.gradle") version "(6.0.26,6.2]" apply false
 }
 
 configurations.all {
