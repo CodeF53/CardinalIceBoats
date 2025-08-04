@@ -1,15 +1,10 @@
 package net.cardinalboats
 
-import net.cardinalboats.TurnPriming.lQueueKey
-import net.cardinalboats.TurnPriming.rQueueKey
-import net.cardinalboats.TurnPriming.smartCenterKey
+import net.cardinalboats.alias.ClientTickEventPost
 import net.cardinalboats.alias.KeyBinding
 import net.cardinalboats.alias.MinecraftClient
-import net.cardinalboats.generated.ModInfo
-import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
+
+import org.apache.commons.lang3.ArrayUtils
 import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 
 interface TurnPrimingBase {
@@ -18,23 +13,14 @@ interface TurnPrimingBase {
     val rQueueKey: KeyBinding
     val smartCenterKey: KeyBinding
 
-    fun init() {
-
-        FORGE_BUS.addListener { event: ClientTickEvent.Post ->
-            tick(MinecraftClient.getInstance())
-        }
-    }
-
     fun tick(minecraft: MinecraftClient)
 
-    @EventBusSubscriber(modid = ModInfo.MOD_ID)
-    companion object {
-        @SubscribeEvent
-        fun onKeyRegister(event: RegisterKeyMappingsEvent) {
-            // Register your keybinding
-            event.register(lQueueKey)
-            event.register(rQueueKey)
-            event.register(smartCenterKey)
-            // Register other keybindings here
+    fun init() {
+
+        FORGE_BUS.addListener { event: ClientTickEventPost ->
+            tick(MinecraftClient.getInstance())
         }
-    }}
+
+        keyMappings = ArrayUtils.addAll(keyMappings, lQueueKey, rQueueKey, smartCenterKey)
+    }
+}

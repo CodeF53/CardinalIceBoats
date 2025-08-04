@@ -1,9 +1,7 @@
 package net.cardinalboats
 
-import com.llamalad7.mixinextras.MixinExtrasBootstrap
 import me.shedaniel.autoconfig.AutoConfig
 import net.cardinalboats.config.CIBConfig
-import net.cardinalboats.generated.ModInfo
 import net.cardinalboats.generated.ModInfo.MOD_ID
 import net.minecraft.client.Minecraft
 import net.minecraftforge.client.ConfigScreenHandler

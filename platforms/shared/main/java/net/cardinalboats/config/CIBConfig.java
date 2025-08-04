@@ -36,6 +36,11 @@ public class CIBConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean smartCenterPrimedTurn = true;
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.BoundedDiscrete(min = 1, max = 50)
+    public int smartCenterPrimedTurnDelayTicks = 30;
+
+
     public static void init() {
         AutoConfig.register(CIBConfig.class, Toml4jConfigSerializer::new);
     }

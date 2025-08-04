@@ -49,3 +49,8 @@ val GLFW_KEY_RIGHT = InputUtil.GLFW_KEY_RIGHT
 val GLFW_KEY_BACKSLASH = InputUtil.GLFW_KEY_BACKSLASH
 
 val RADIANS_PER_DEGREE = MathHelper.RADIANS_PER_DEGREE
+
+
+fun translatable(value: String) = Text.translatable(value)
+
+fun makeText(value: String) = Text.literal(value)

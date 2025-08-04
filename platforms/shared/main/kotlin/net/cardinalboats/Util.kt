@@ -9,15 +9,10 @@ import kotlin.math.roundToInt
 private val icePattern = Pattern.compile("(\\b|_)ice\\b", Pattern.CASE_INSENSITIVE)
 
 
-private val logger = LogUtils.getLogger()
-
 @JvmField
 public var lieAboutMovingForward = false;
 
-fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Boolean) {
-    boat.yaw = rotation
-    boat.yawVelocity = 0f
-    boat.controllingPassenger?.yaw = boat.yaw
+fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Boolean, postAction: () -> Unit = {}) {
 
     if (maintainVelocity) {
         // get current velocity vector length
@@ -29,18 +24,26 @@ fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Bool
     } else {
         boat.velocity = Vec3d.ZERO
     }
-    logger.info("Rotating boat ${boat.uuid} to $rotation, new velocity: ${boat.velocity}")
+    boat.yaw = rotation
+    boat.yawVelocity = 0f
+    boat.controllingPassenger?.yaw = boat.yaw
+
+    postAction()
 }
 
 fun isIce(blockState: BlockState): Boolean {
-    return icePattern.matcher(blockState.block.toString()).find()
+    if (icePattern.matcher(blockState.block.toString()).find()) {
+        return true
+    } else {
+        return false
+    }
 }
 
 fun clientChatLog(player: ClientPlayerEntity?, message: String) {
     if (player == null) return
 
     if (CIBConfig.getInstance().doChatShit) {
-        player.sendMessage(Text.literal("[cardinalboats] $message"), false)
+        player.sendMessage(makeText("[cardinalboats] $message"), false)
     }
 }
 

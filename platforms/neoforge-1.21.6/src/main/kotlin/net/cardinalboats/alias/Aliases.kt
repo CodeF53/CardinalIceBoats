@@ -93,3 +93,7 @@ val RADIANS_PER_DEGREE = (Math.PI.toFloat() / 180f);
 fun Vec3.rotateY(y: Float) = this.yRot(y)
 
 fun LocalPlayer.sendMessage(text: Text, actionBar: Boolean) = this.displayClientMessage(text, actionBar)
+
+fun translatable(value: String) = Text.translatable(value)
+
+fun makeText(value: String) = Text.literal(value)

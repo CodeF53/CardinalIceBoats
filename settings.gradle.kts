@@ -2,14 +2,14 @@
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        mavenCentral()
+        mavenCentral().content {
+            excludeGroup("net.jodah")
+        }
         maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
         maven { url = uri("https://maven.minecraftforge.net") }
-        maven {
-            url = uri("https://maven.fabricmc.net/")
-        }
+        maven { url = uri("https://maven.fabricmc.net/") }
         maven { url = uri("https://maven.neoforged.net/releases/") }
-        maven { url = uri("https://plugins.gradle.org/m2/") }
+        //maven { url = uri("https://plugins.gradle.org/m2/") }
 
         maven {
             name = "libIPN-Snapshots"
@@ -45,13 +45,20 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         gradlePluginPortal()
-        mavenCentral()
+        mavenCentral().content {
+            excludeGroup("net.jodah")
+        }
         google()
         maven { url = uri("https://repo.spongepowered.org/repository/maven-public/") }
         maven { url = uri("https://maven.minecraftforge.net") }
         maven { url = uri("https://maven.fabricmc.net/") }
         maven { url = uri("https://maven.neoforged.net/releases/") }
         maven { url = uri("https://plugins.gradle.org/m2/") }
+
+        maven {
+            name = "Forge"
+            url = uri("https://maven.minecraftforge.net")
+        }
 
         maven {
             name = "libIPN-Snapshots"
@@ -80,13 +87,18 @@ dependencyResolutionManagement {
             url = uri("https://maven.ipn-mod.org/releases")
         }
     }
-
-
 }
 
 rootProject.name = "CardinalIceBoats"
 
+include(":platforms:fabric-1.18.2")
+include(":platforms:fabric-1.19.2")
+include(":platforms:fabric-1.20.1")
+include(":platforms:fabric-1.21.1")
 include(":platforms:fabric-1.21.6")
+include(":platforms:forge-1.18.2")
+include(":platforms:forge-1.19.2")
+include(":platforms:forge-1.20.1")
 include(":platforms:forge-1.21.1")
 include(":platforms:neoforge-1.21.6")
 include(":platforms:neoforge-1.21.1")

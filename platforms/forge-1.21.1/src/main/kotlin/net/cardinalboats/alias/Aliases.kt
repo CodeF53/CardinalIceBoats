@@ -19,6 +19,9 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.BlockHitResult
 import net.minecraft.world.phys.HitResult
 import net.minecraft.world.phys.Vec3
+import net.minecraftforge.event.TickEvent.ClientTickEvent
+import thedarkcolour.kotlinforforge.forge.FORGE_BUS
+
 
 typealias AirBlock = AirBlock
 typealias ClientWorld = ClientLevel
@@ -40,6 +43,10 @@ typealias HitResultType = HitResult.Type
 typealias BlockHitResult = BlockHitResult
 typealias Vec3d = Vec3
 typealias LogUtils = LogUtils
+typealias ClientTickEvent = ClientTickEvent
+
+
+val FORGE_BUS = FORGE_BUS
 
 val GLFW_KEY_UP = InputConstants.KEY_UP
 val GLFW_KEY_DOWN = InputConstants.KEY_DOWN
@@ -93,3 +100,14 @@ val RADIANS_PER_DEGREE = (Math.PI.toFloat() / 180f);
 fun Vec3.rotateY(y: Float) = this.yRot(y)
 
 fun LocalPlayer.sendMessage(text: Text, actionBar: Boolean) = this.displayClientMessage(text, actionBar)
+
+fun translatable(value: String) = Text.translatable(value)
+
+fun makeText(value: String) = Text.literal(value)
+
+var keyMappings: Array<KeyBinding>
+    get() = MinecraftClient.getInstance().options.keyMappings;
+    set(value) {
+        MinecraftClient.getInstance().options.keyMappings = value;
+    }
+

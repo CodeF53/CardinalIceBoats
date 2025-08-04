@@ -2,9 +2,50 @@ package net.cardinalboats
 
 import net.cardinalboats.config.CIBConfig
 import net.cardinalboats.alias.*
+import net.cardinalboats.alias.translatable
 
 @Suppress("MagicNumber")
 object TurnPriming: TurnPrimingBase {
+
+    private class TickCountingTask(private var ticks: Int? = null,
+                                   private var times: Int? = null,
+                                   val task: () -> Unit) {
+        init {
+            if (ticks == null) {
+                ticks = CIBConfig.getInstance().smartCenterPrimedTurnDelayTicks
+            }
+            if (times == null) {
+                times = 0
+            }
+        }
+
+        fun tick(): Boolean {
+            ticks = ticks!! - 1
+            if (ticks!! <= 0) {
+                task()
+                times = times!! - 1
+                if (times!! <= 0) {
+                    return true
+                } else {
+                    ticks = CIBConfig.getInstance().smartCenterPrimedTurnDelayTicks
+                }
+            }
+            return false
+        }
+
+        fun runNow() {
+            task()
+        }
+    }
+
+    private val tasks = mutableListOf<TickCountingTask>()
+
+    private fun TickCountingTask.addTask(): TickCountingTask {
+        synchronized(tasks) {
+            tasks.add(this)
+        }
+        return this;
+    }
 
     override val lQueueKey = KeyBinding(
         "key.cardinalboats.prime_left",
@@ -52,29 +93,37 @@ object TurnPriming: TurnPrimingBase {
         Direction.WEST to arrayOf(intArrayOf(0, 0), intArrayOf(1, 0), intArrayOf(2, 0))
     )
 
+    val centerTask = {
+        val boat = MinecraftClient.getInstance().player?.vehicle
+        if (boat != null && boat is AbstractBoatEntity) {
+            smartCenter(boat)
+        }
+    }
+
     @Suppress("EmptyWhileBlock", "MagicNumber", "CyclomaticComplexMethod")
     override fun tick(minecraft: MinecraftClient) {
         val player = minecraft.player
         if (player != null && player.vehicle != null && player.vehicle is AbstractBoatEntity) {
+            tasks.runAll()
             val boat = player.vehicle as AbstractBoatEntity
             if (isIce(boat.steppingBlockState)) {
                 while (lQueueKey.wasPressed()) {
-                    clientChatLog(player, Text.translatable("info.cardinalboats.left_turn_queue").string)
+                    clientChatLog(player, translatable("info.cardinalboats.left_turn_queue").string)
                     lTurnPrimed = true
                     rTurnPrimed = false
                 }
                 while (rQueueKey.wasPressed()) {
-                    clientChatLog(player, Text.translatable("info.cardinalboats.right_turn_queue").string)
+                    clientChatLog(player, translatable("info.cardinalboats.right_turn_queue").string)
                     rTurnPrimed = true
                     lTurnPrimed = false
                 }
 
                 if (CIBConfig.getInstance().alwaysSmartCenter && boat.yaw % 90 == 0f) {
-                    smartCenter(boat) 
+                    TickCountingTask(task = centerTask).addTask().runNow()
                 }
 
-                while (smartCenterKey.wasPressed()) { 
-                    smartCenter(boat) 
+                while (smartCenterKey.wasPressed()) {
+                    TickCountingTask(task = centerTask).addTask().runNow()
                 }
 
                 val world = minecraft.world!!
@@ -82,13 +131,17 @@ object TurnPriming: TurnPrimingBase {
                 if (lTurnPrimed && shouldTurn(boat, world, true)) {
                     rotateBoat(boat, roundYRot(boat.yaw - 90, 90), CIBConfig.getInstance().maintainVelocityOnTurns)
                     lTurnPrimed = false
-                    clientChatLog(player, Text.translatable("info.cardinalboats.left_turn_complete").string)
-                    if (CIBConfig.getInstance().smartCenterPrimedTurn) smartCenter(boat)
+                    clientChatLog(player, translatable("info.cardinalboats.left_turn_complete").string)
+                    TickCountingTask {
+                        if (CIBConfig.getInstance().smartCenterPrimedTurn) centerTask()
+                    }.addTask().runNow()
                 } else if (rTurnPrimed && shouldTurn(boat, world, false)) {
                     rotateBoat(boat, roundYRot(boat.yaw + 90, 90), CIBConfig.getInstance().maintainVelocityOnTurns)
                     rTurnPrimed = false
-                    clientChatLog(player, Text.translatable("info.cardinalboats.right_turn_complete").string)
-                    if (CIBConfig.getInstance().smartCenterPrimedTurn) smartCenter(boat)
+                    clientChatLog(player, translatable("info.cardinalboats.right_turn_complete").string)
+                    TickCountingTask {
+                        if (CIBConfig.getInstance().smartCenterPrimedTurn) centerTask()
+                    }.addTask().runNow()
                 }
             } else {
                 while (lQueueKey.wasPressed() || rQueueKey.wasPressed() || smartCenterKey.wasPressed()) {}
@@ -96,7 +149,7 @@ object TurnPriming: TurnPrimingBase {
         } else {
             // if we aren't in the boat anymore, we don't care
             if (lTurnPrimed || rTurnPrimed) {
-                clientChatLog(minecraft.player, Text.translatable("info.cardinalboats.cancel").string)
+                clientChatLog(minecraft.player, translatable("info.cardinalboats.cancel").string)
             }
             lTurnPrimed = false
             rTurnPrimed = false
@@ -192,4 +245,15 @@ object TurnPriming: TurnPrimingBase {
         }
         return MathHelper.clamp(nudge.toDouble(), -0.2, 0.2)
     }
+
+    private fun MutableList<TickCountingTask>.runAll() {
+        synchronized(this) {
+            val toRemove = this.filter {
+                it.tick()
+            }
+            this.removeAll(toRemove)
+        }
+    }
+
 }
+
