@@ -2,7 +2,7 @@
 detekt = "1+"
 kotlin = "2.1.21"
 shadowVer = "8.+"
-libipnGradleVer = "[1.0.0,1.2)"
+libipnGradleVer = "[1.0.0,1.1)"
 
 [plugins]
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt"}

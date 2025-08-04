@@ -27,10 +27,12 @@ libIPN {
 afterEvaluate {
     modrinth {
         failSilently.set(true)
+/*
         debugMode = true
         if (debugMode.get()) {
             token.set("INVALID")
         }
+*/
         if (System.getenv("IPNEXT_RELEASE") != null) {
             token.set(System.getenv("MODRINTH_TOKEN"))
         }
