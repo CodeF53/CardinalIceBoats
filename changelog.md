@@ -1,15 +1,23 @@
 <!-- latest begin -->
 
-### 2.0.2
+### 2.0.3
+
 - Added support for:
-  * Fabic 1.18.2, 1.19.2, 1.20.1, 1.21.1
-  * NeoForge 1.20.1, 1.21.1
-  * Forge 1.18.2, 1.19.2, 1.20.1, 1.21.1
-* Added a new option that controls when the mod will attempt to auto centre the boat after a primed turn.
-* Turning at high speed is now more reliable. 
+    * Fabic 1.21.10
+    * NeoForge 1.21.10
 
 <!-- latest end -->
 <!-- rest begin -->
+
+
+### 2.0.2
+- Added support for:
+    * Fabic 1.18.2, 1.19.2, 1.20.1, 1.21.1
+    * NeoForge 1.20.1, 1.21.1
+    * Forge 1.18.2, 1.19.2, 1.20.1, 1.21.1
+* Added a new option that controls when the mod will attempt to auto centre the boat after a primed turn.
+* Turning at high speed is now more reliable.
+
 
 ### 2.0.1
 
