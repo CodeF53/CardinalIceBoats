@@ -100,4 +100,4 @@ fun translatable(value: String) = Text.translatable(value)
 
 fun makeText(value: String) = Text.literal(value)
 
-val keyBindingCategory = KeyMapping.Category.register(ResourceLocation.tryBuild(ModInfo.MOD_ID, "binding_category")!!)
+val KEY_BINDING_CATEGORY = KeyMapping.Category.register(ResourceLocation.tryBuild(ModInfo.MOD_ID, "binding_category")!!)

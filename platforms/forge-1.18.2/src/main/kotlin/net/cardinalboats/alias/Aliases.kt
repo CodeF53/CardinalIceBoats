@@ -115,4 +115,4 @@ fun translatable(value: String): TextComponent = TextComponent(I18n.get(value))
 
 fun makeText(value: String) = TextComponent(value)
 
-val keyBindingCategory = "key.category.cardinalboats.binding_category"
+const val KEY_BINDING_CATEGORY = "key.category.cardinalboats.binding_category"

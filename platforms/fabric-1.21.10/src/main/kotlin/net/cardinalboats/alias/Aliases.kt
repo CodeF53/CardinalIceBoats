@@ -53,7 +53,7 @@ val GLFW_KEY_BACKSLASH = InputUtil.GLFW_KEY_BACKSLASH
 
 val RADIANS_PER_DEGREE = MathHelper.RADIANS_PER_DEGREE
 
-val keyBindingCategory = KeyBindingCategory.create(Identifier.of(ModInfo.MOD_ID, "binding_category"))
+val KEY_BINDING_CATEGORY = KeyBindingCategory.create(Identifier.of(ModInfo.MOD_ID, "binding_category"))
 
 fun translatable(value: String) = Text.translatable(value)
 

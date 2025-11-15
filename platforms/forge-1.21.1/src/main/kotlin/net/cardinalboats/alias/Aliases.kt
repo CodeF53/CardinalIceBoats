@@ -111,4 +111,4 @@ var keyMappings: Array<KeyBinding>
         MinecraftClient.getInstance().options.keyMappings = value;
     }
 
-val keyBindingCategory = "key.category.cardinalboats.binding_category"
+const val KEY_BINDING_CATEGORY = "key.category.cardinalboats.binding_category"

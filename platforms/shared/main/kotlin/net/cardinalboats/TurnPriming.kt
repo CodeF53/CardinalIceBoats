@@ -51,7 +51,7 @@ object TurnPriming: TurnPrimingBase {
         "key.cardinalboats.prime_left",
         InputUtilType.KEYSYM,
         GLFW_KEY_LEFT,
-        keyBindingCategory
+        KEY_BINDING_CATEGORY
         //"category.cardinalboats.key_category_title"
     )
 
@@ -59,7 +59,7 @@ object TurnPriming: TurnPrimingBase {
         "key.cardinalboats.prime_right",
         InputUtilType.KEYSYM,
         GLFW_KEY_RIGHT,
-        keyBindingCategory
+        KEY_BINDING_CATEGORY
         //"category.cardinalboats.key_category_title"
     )
 
@@ -68,7 +68,7 @@ object TurnPriming: TurnPrimingBase {
         "key.cardinalboats.smartCenter",
         InputUtilType.KEYSYM,
         GLFW_KEY_BACKSLASH,
-        keyBindingCategory
+        KEY_BINDING_CATEGORY
         //"category.cardinalboats.key_category_title"
     )
 

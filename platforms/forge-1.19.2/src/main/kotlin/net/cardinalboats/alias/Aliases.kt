@@ -112,4 +112,4 @@ fun translatable(value: String) = Text.translatable(value)
 
 fun makeText(value: String) = Text.literal(value)
 
-val keyBindingCategory = "key.category.cardinalboats.binding_category"
+const val KEY_BINDING_CATEGORY = "key.category.cardinalboats.binding_category"
