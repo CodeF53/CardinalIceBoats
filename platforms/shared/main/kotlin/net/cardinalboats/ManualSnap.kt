@@ -13,12 +13,12 @@ object ManualSnap: ManualSnapBase {
     override val manualSnapKey = KeyBinding("key.cardinalboats.snapManual",
                                             InputUtilType.KEYSYM,
                                             GLFW_KEY_UP,
-                                            "category.cardinalboats.key_category_title")
+                                            keyBindingCategory)
 
     override val snap180 = KeyBinding("key.cardinalboats.snap180",
                                       InputUtilType.KEYSYM,
                                       GLFW_KEY_DOWN,
-                                      "category.cardinalboats.key_category_title")
+                                      keyBindingCategory)
 
 
     @Suppress("EmptyWhileBlock", "MagicNumber")

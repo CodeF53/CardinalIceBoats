@@ -50,6 +50,8 @@ val GLFW_KEY_BACKSLASH = InputUtil.GLFW_KEY_BACKSLASH
 
 val RADIANS_PER_DEGREE = MathHelper.RADIANS_PER_DEGREE
 
+val keyBindingCategory = "key.category.cardinalboats.binding_category"
+
 
 fun translatable(value: String) = Text.translatable(value)
 

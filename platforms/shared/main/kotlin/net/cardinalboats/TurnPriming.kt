@@ -51,14 +51,16 @@ object TurnPriming: TurnPrimingBase {
         "key.cardinalboats.prime_left",
         InputUtilType.KEYSYM,
         GLFW_KEY_LEFT,
-        "category.cardinalboats.key_category_title"
+        keyBindingCategory
+        //"category.cardinalboats.key_category_title"
     )
 
     override val rQueueKey = KeyBinding(
         "key.cardinalboats.prime_right",
         InputUtilType.KEYSYM,
         GLFW_KEY_RIGHT,
-        "category.cardinalboats.key_category_title"
+        keyBindingCategory
+        //"category.cardinalboats.key_category_title"
     )
 
 
@@ -66,7 +68,8 @@ object TurnPriming: TurnPrimingBase {
         "key.cardinalboats.smartCenter",
         InputUtilType.KEYSYM,
         GLFW_KEY_BACKSLASH,
-        "category.cardinalboats.key_category_title"
+        keyBindingCategory
+        //"category.cardinalboats.key_category_title"
     )
 
     private var lTurnPrimed = false
@@ -147,7 +150,7 @@ object TurnPriming: TurnPrimingBase {
                 while (lQueueKey.wasPressed() || rQueueKey.wasPressed() || smartCenterKey.wasPressed()) {}
             }
         } else {
-            // if we aren't in the boat anymore, we don't care
+            // if we aren't on the boat anymore, we don't care
             if (lTurnPrimed || rTurnPrimed) {
                 clientChatLog(minecraft.player, translatable("info.cardinalboats.cancel").string)
             }

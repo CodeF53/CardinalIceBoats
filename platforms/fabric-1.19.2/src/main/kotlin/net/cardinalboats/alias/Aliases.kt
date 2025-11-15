@@ -58,3 +58,5 @@ fun makeText(value: String) = Text.literal(value)
 
 val BoatEntity.controllingPassenger : Entity?
     get() = this.primaryPassenger
+
+val keyBindingCategory = "key.category.cardinalboats.binding_category"

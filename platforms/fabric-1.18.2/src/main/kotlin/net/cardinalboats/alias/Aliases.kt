@@ -69,3 +69,5 @@ val Entity.steppingBlockState: BlockState
 
 val BoatEntity.controllingPassenger : Entity?
     get() = this.primaryPassenger
+
+val keyBindingCategory = "key.category.cardinalboats.binding_category"

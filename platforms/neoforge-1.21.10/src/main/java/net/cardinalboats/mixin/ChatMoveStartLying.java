@@ -18,7 +18,7 @@ import static net.cardinalboats.UtilKt.lieAboutMovingForward;
 public abstract class ChatMoveStartLying {
     @Shadow @Nullable public LocalPlayer player;
 
-    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openChatScreen(Ljava/lang/String;)V"))
+    @Inject(method = "handleKeybinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;openChatScreen(Lnet/minecraft/client/gui/components/ChatComponent$ChatMethod;)V"))
     void moveChatBoi(CallbackInfo ci) {
         // on opening the chat
         assert this.player != null;

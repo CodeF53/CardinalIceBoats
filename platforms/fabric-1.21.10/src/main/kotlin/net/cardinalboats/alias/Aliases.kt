@@ -1,6 +1,7 @@
 package net.cardinalboats.alias
 
 import com.mojang.logging.LogUtils
+import net.cardinalboats.generated.ModInfo
 import net.minecraft.block.AirBlock
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.option.KeyBinding
@@ -12,6 +13,7 @@ import net.minecraft.entity.vehicle.AbstractBoatEntity
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.block.BlockState
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.World
@@ -36,6 +38,7 @@ typealias MathHelper = MathHelper
 typealias InputUtil = InputUtil
 typealias InputUtilType = InputUtil.Type
 typealias KeyBinding = KeyBinding
+typealias KeyBindingCategory = KeyBinding.Category
 typealias HitResult = HitResult
 typealias HitResultType = HitResult.Type
 typealias BlockHitResult = BlockHitResult
@@ -50,7 +53,11 @@ val GLFW_KEY_BACKSLASH = InputUtil.GLFW_KEY_BACKSLASH
 
 val RADIANS_PER_DEGREE = MathHelper.RADIANS_PER_DEGREE
 
+val keyBindingCategory = KeyBindingCategory.create(Identifier.of(ModInfo.MOD_ID, "binding_category"))
 
 fun translatable(value: String) = Text.translatable(value)
 
 fun makeText(value: String) = Text.literal(value)
+
+val AbstractBoatEntity.world: World
+    get() = this.entityWorld

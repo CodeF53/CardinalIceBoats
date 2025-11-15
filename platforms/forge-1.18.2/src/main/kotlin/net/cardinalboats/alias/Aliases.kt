@@ -114,3 +114,5 @@ fun LocalPlayer.sendMessage(text: Text, actionBar: Boolean) = this.displayClient
 fun translatable(value: String): TextComponent = TextComponent(I18n.get(value))
 
 fun makeText(value: String) = TextComponent(value)
+
+val keyBindingCategory = "key.category.cardinalboats.binding_category"

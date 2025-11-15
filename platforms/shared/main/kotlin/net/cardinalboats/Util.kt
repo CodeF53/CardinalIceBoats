@@ -10,7 +10,7 @@ private val icePattern = Pattern.compile("(\\b|_)ice\\b", Pattern.CASE_INSENSITI
 
 
 @JvmField
-public var lieAboutMovingForward = false;
+var lieAboutMovingForward = false;
 
 fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Boolean, postAction: () -> Unit = {}) {
 

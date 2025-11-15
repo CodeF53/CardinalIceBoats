@@ -19,7 +19,7 @@ public abstract class ChatMoveStartLying {
     @Nullable
     public ClientPlayerEntity player;
 
-    @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;openChatScreen(Ljava/lang/String;)V"))
+    @Inject(method = "handleInputEvents", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/MinecraftClient;openChatScreen(Lnet/minecraft/client/gui/hud/ChatHud$ChatMethod;)V"))
     void moveChatBoi(CallbackInfo ci) {
         // on opening the chat
         if (this.player != null) {
@@ -33,3 +33,5 @@ public abstract class ChatMoveStartLying {
         }
     }
 }
+
+

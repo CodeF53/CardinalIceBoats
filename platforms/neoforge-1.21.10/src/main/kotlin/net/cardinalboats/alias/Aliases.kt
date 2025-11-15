@@ -2,6 +2,7 @@ package net.cardinalboats.alias
 
 import com.mojang.blaze3d.platform.InputConstants
 import com.mojang.logging.LogUtils
+import net.cardinalboats.generated.ModInfo
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
 import net.minecraft.client.multiplayer.ClientLevel
@@ -9,6 +10,7 @@ import net.minecraft.client.player.LocalPlayer
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
@@ -97,3 +99,5 @@ fun LocalPlayer.sendMessage(text: Text, actionBar: Boolean) = this.displayClient
 fun translatable(value: String) = Text.translatable(value)
 
 fun makeText(value: String) = Text.literal(value)
+
+val keyBindingCategory = KeyMapping.Category.register(ResourceLocation.tryBuild(ModInfo.MOD_ID, "binding_category")!!)

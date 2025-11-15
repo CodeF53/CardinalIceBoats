@@ -11,10 +11,10 @@ dependencies {
 }
 
 plugins {
-    alias(libs.plugins.libipnGradle)
+    alias(libs.plugins.easymod)
 }
 
-libIPN {
+easyMod {
     this.enableShadow = false
     this.enableProGuard = false
     jarPostProcessConfig = {
