@@ -10,11 +10,11 @@ import net.minecraft.client.player.LocalPlayer
 import net.minecraft.core.BlockPos
 import net.minecraft.core.Direction
 import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import net.minecraft.util.Mth
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.entity.vehicle.AbstractBoat
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat
 import net.minecraft.world.level.Level
 import net.minecraft.world.level.block.AirBlock
 import net.minecraft.world.level.block.state.BlockState
@@ -100,4 +100,4 @@ fun translatable(value: String) = Text.translatable(value)
 
 fun makeText(value: String) = Text.literal(value)
 
-val KEY_BINDING_CATEGORY = KeyMapping.Category.register(ResourceLocation.tryBuild(ModInfo.MOD_ID, "binding_category")!!)
+val KEY_BINDING_CATEGORY = KeyMapping.Category.register(Identifier.tryBuild(ModInfo.MOD_ID, "binding_category")!!)

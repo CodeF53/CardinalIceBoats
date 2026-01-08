@@ -1,6 +1,7 @@
 package net.cardinalboats
 
 import me.shedaniel.autoconfig.AutoConfig
+import me.shedaniel.autoconfig.AutoConfigClient
 import net.cardinalboats.config.CIBConfig
 import net.cardinalboats.generated.ModInfo
 import net.neoforged.bus.api.SubscribeEvent
@@ -43,7 +44,7 @@ class CardinalBoatsInit {
             CIBConfig.init()
             ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory::class.java) {
                 IConfigScreenFactory { _, p ->
-                    AutoConfig.getConfigScreen(CIBConfig::class.java, p).get()
+                    AutoConfigClient.getConfigScreen(CIBConfig::class.java, p).get()
                 }
             }
         } catch (@Suppress("TooGenericExceptionCaught") t: Throwable) {
