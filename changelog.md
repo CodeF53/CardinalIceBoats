@@ -1,13 +1,20 @@
 <!-- latest begin -->
 
-### 2.0.3
+### 2.0.5
 
 - Added support for:
-    * Fabic 1.21.10
-    * NeoForge 1.21.10
+  * Fabic 1.21.11
+  * NeoForge 1.21.11
 
 <!-- latest end -->
 <!-- rest begin -->
+
+
+### 2.0.3
+
+- Added support for:
+  * Fabic 1.21.10
+  * NeoForge 1.21.10
 
 
 ### 2.0.2
