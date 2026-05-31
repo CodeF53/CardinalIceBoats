@@ -1,4 +1,11 @@
 <!-- latest begin -->
+### 2.1.0
+
+- Added support for:
+  * Fabic 26.1.x
+  * NeoForge 26.1.x
+
+NOTE: Future versions will drop Cloth Config and switch to libIPN for the configuration. This is due to Cloth Config dropping support for Forge.
 
 ### 2.0.5
 
