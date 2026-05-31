@@ -1,4 +1,4 @@
-import io.gitlab.arturbosch.detekt.Detekt
+//import dev.detekt.gradle.Detekt
 import org.gradle.kotlin.dsl.support.serviceOf
 import java.io.ByteArrayOutputStream
 
@@ -8,7 +8,7 @@ plugins {
     idea
     alias(libs.plugins.kotlin) apply false
     alias(libs.plugins.kotlinSer) apply false
-    alias(libs.plugins.detekt)
+    //alias(libs.plugins.detekt)
     alias(libs.plugins.shadow) apply false
     alias(libs.plugins.easymod)
 }
@@ -29,6 +29,7 @@ modVersion {
 
 subprojects {
     group = "net.cardinalboats"
+/*
     apply {
         plugin(rootProject.libs.plugins.detekt.get().pluginId)
     }
@@ -36,12 +37,15 @@ subprojects {
     detekt {
         config.setFrom(rootProject.files("config/detekt/detekt.yml"))
     }
+*/
 
 }
 
+/*
 tasks.withType<Detekt>().configureEach {
     reports {
         html.required.set(true)
         html.outputLocation.set(file("build/reports/detekt.html"))
     }
 }
+*/
