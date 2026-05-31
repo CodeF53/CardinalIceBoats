@@ -103,19 +103,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "CardinalIceBoats"
 
-include(":platforms:fabric-1.18.2")
-include(":platforms:fabric-1.19.2")
-include(":platforms:fabric-1.20.1")
-include(":platforms:fabric-1.21.1")
-include(":platforms:fabric-1.21.10")
-include(":platforms:fabric-1.21.11")
-include(":platforms:neoforge-1.21.11")
-include(":platforms:neoforge-1.21.10")
-include(":platforms:neoforge-1.21.1")
-include(":platforms:forge-1.18.2")
-include(":platforms:forge-1.19.2")
-include(":platforms:forge-1.20.1")
-include(":platforms:forge-1.21.1")
+include(":platforms:fabric-26.1.2")
+include(":platforms:neoforge-26.1.2")
+/*
+include(":platforms:forge-26.1.2")
+*/
 
 
 plugins {

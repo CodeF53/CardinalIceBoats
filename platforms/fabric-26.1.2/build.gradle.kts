@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    modImplementation ("me.shedaniel.cloth:cloth-config-fabric:$cloth_config_version")
+    implementation ("me.shedaniel.cloth:cloth-config-fabric:$cloth_config_version")
 }
 
 plugins {

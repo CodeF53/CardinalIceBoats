@@ -1,7 +1,16 @@
 package net.cardinalboats
 
-import net.cardinalboats.alias.*
+import net.cardinalboats.alias.RADIANS_PER_DEGREE
 import net.cardinalboats.config.CIBConfig
+import net.minecraft.network.chat.Component
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.world.phys.BlockHitResult
+import net.minecraft.world.phys.HitResult
+import net.minecraft.world.phys.Vec3
 
 import java.util.regex.Pattern
 import kotlin.math.roundToInt
@@ -12,21 +21,29 @@ private val icePattern = Pattern.compile("(\\b|_)ice\\b", Pattern.CASE_INSENSITI
 @JvmField
 var lieAboutMovingForward = false;
 
-fun rotateBoat(boat: AbstractBoatEntity, rotation: Float, maintainVelocity: Boolean, postAction: () -> Unit = {}) {
+var Entity.velocity: Vec3
+    get() {
+        return this.getDeltaMovement()
+    }
+    set(value) {
+        this.setDeltaMovement(value)
+    }
+
+fun rotateBoat(boat: AbstractBoat, rotation: Float, maintainVelocity: Boolean, postAction: () -> Unit = {}) {
 
     if (maintainVelocity) {
         // get current velocity vector length
         val currentVelocity = boat.velocity.length()
         // create new vector normalized to rotation
-        val newVelocity = Vec3d(0.0, 0.0, currentVelocity).rotateY(-rotation * RADIANS_PER_DEGREE) // Trig magic
+        val newVelocity = Vec3(0.0, 0.0, currentVelocity).yRot(-rotation * RADIANS_PER_DEGREE) // Trig magic
         // give boat new thing
         boat.velocity = newVelocity
     } else {
-        boat.velocity = Vec3d.ZERO
+        boat.velocity = Vec3.ZERO
     }
-    boat.yaw = rotation
-    boat.yawVelocity = 0f
-    boat.controllingPassenger?.yaw = boat.yaw
+    boat.yRot = rotation
+    boat.deltaRotation = 0f
+    boat.controllingPassenger?.yRot = boat.yRot
 
     postAction()
 }
@@ -39,19 +56,19 @@ fun isIce(blockState: BlockState): Boolean {
     }
 }
 
-fun clientChatLog(player: ClientPlayerEntity?, message: String) {
+fun clientChatLog(player: Player?, message: String) {
     if (player == null) return
 
     if (CIBConfig.getInstance().doChatShit) {
-        player.sendMessage(makeText("[cardinalboats] $message"), false)
+        player.sendOverlayMessage(Component.literal("[cardinalboats] $message"))
     }
 }
 
 @Suppress("MagicNumber")
-fun shouldSnap(level: World, player: PlayerEntity): Boolean {
+fun shouldSnap(level: Level, player: Player): Boolean {
     // If we are putting a boat on a block
-    val lookingAt = player.raycast(20.0, 0.0f, false)
-    if (lookingAt != null && lookingAt.type == HitResultType.BLOCK) {
+    val lookingAt: HitResult? = player.pick(20.0, 0.0f, false)
+    if (lookingAt != null && lookingAt.type == HitResult.Type.BLOCK) {
         // If that block is ice, return true
         return isIce(level.getBlockState((lookingAt as BlockHitResult).blockPos))
     }

@@ -1,23 +1,21 @@
 package net.cardinalboats
 
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
-import net.cardinalboats.alias.KeyBinding
-import net.cardinalboats.alias.InputUtilType
-import net.cardinalboats.alias.InputUtil
-import net.cardinalboats.alias.MinecraftClient
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
+import net.minecraft.client.KeyMapping
+import net.minecraft.client.Minecraft
 
 interface ManualSnapBase {
-    val manualSnapKey: KeyBinding
-    val snap180: KeyBinding
+    val manualSnapKey: KeyMapping
+    val snap180: KeyMapping
 
 
-    fun tick(minecraft: MinecraftClient)
+    fun tick(minecraft: Minecraft)
 
     // Run by fabric initializer
     fun init() {
-        KeyBindingHelper.registerKeyBinding(manualSnapKey)
-        KeyBindingHelper.registerKeyBinding(snap180)
+        KeyMappingHelper.registerKeyMapping(manualSnapKey)
+        KeyMappingHelper.registerKeyMapping(snap180)
 
         ClientTickEvents.END_CLIENT_TICK.register { minecraft ->
             tick(minecraft)

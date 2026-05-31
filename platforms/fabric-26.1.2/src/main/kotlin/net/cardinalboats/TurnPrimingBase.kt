@@ -1,24 +1,23 @@
 package net.cardinalboats
 
-import net.cardinalboats.alias.KeyBinding
-import net.cardinalboats.alias.MinecraftClient
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
-
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper
+import net.minecraft.client.KeyMapping
+import net.minecraft.client.Minecraft
 
 interface TurnPrimingBase {
 
-    val lQueueKey: KeyBinding
-    val rQueueKey: KeyBinding
-    val smartCenterKey: KeyBinding
+    val lQueueKey: KeyMapping
+    val rQueueKey: KeyMapping
+    val smartCenterKey: KeyMapping
 
     fun init() {
-        KeyBindingHelper.registerKeyBinding(lQueueKey)
-        KeyBindingHelper.registerKeyBinding(rQueueKey)
-        KeyBindingHelper.registerKeyBinding(smartCenterKey)
+        KeyMappingHelper.registerKeyMapping(lQueueKey)
+        KeyMappingHelper.registerKeyMapping(rQueueKey)
+        KeyMappingHelper.registerKeyMapping(smartCenterKey)
 
         ClientTickEvents.END_CLIENT_TICK.register { minecraft -> tick(minecraft) }
     }
 
-    fun tick(minecraft: MinecraftClient)
+    fun tick(minecraft: Minecraft)
 }
