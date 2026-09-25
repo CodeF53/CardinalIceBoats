@@ -2,6 +2,7 @@ import masecla.modrinth4j.model.version.ProjectVersion.*
 
 dependencies {
     annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0")?.let { compileOnly(it) }
+    testImplementation(kotlin("test"))
 }
 
 plugins {

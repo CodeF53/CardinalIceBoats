@@ -20,10 +20,11 @@ object ManualSnap: ManualSnapBase {
                                       KEY_BINDING_CATEGORY)
 
 
+
     @Suppress("EmptyWhileBlock", "MagicNumber")
     override fun tick(minecraft: Minecraft) {
         val player = minecraft.player
-        if (player != null && player.vehicle != null && player.vehicle is AbstractBoat) {
+        if (player?.vehicle != null && player.vehicle is AbstractBoat) {
             val boat = player.vehicle as AbstractBoat
             if (isIce(boat.blockStateOn)) {
                 while (manualSnapKey.consumeClick()) {

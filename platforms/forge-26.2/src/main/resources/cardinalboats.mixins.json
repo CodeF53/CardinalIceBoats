@@ -13,6 +13,5 @@
     },
     "mixins":             [
         "BoatPlacementSnap"
-    ],
-    "plugin":             "net.cardinalboats.mixinplugins.CIBMixinPlugin"
+    ]
 }

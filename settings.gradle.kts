@@ -42,9 +42,6 @@ pluginManagement {
         }
 
     }
-    plugins {
-        kotlin("kapt") version "2.4.0"
-    }
 }
 
 dependencyResolutionManagement {
@@ -109,6 +106,7 @@ rootProject.name = "CardinalIceBoats"
 include(":platforms:fabric-26.1.2")
 include(":platforms:fabric-26.2")
 include(":platforms:neoforge-26.1.2")
+include(":platforms:neoforge-26.2")
 include(":platforms:forge-26.1.2")
 include(":platforms:forge-26.2")
 
