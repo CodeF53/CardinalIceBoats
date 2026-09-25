@@ -1,6 +1,5 @@
 package net.cardinalboats
 
-import com.google.common.eventbus.Subscribe
 import net.cardinalboats.TurnPriming.lQueueKey
 import net.cardinalboats.TurnPriming.rQueueKey
 import net.cardinalboats.TurnPriming.smartCenterKey
@@ -29,7 +28,6 @@ interface TurnPrimingBase {
 
     @EventBusSubscriber(modid = ModInfo.MOD_ID)
     companion object {
-        @Subscribe
         fun onKeyRegister(event: RegisterKeyMappingsEvent) {
             // Register your keybinding
             event.register(lQueueKey)

@@ -30,7 +30,6 @@ interface ManualSnapBase {
 
     @EventBusSubscriber(modid = ModInfo.MOD_ID)
     companion object {
-        @Subscribe
         fun onKeyRegister(event: RegisterKeyMappingsEvent) {
             // Register your keybinding
             event.register(manualSnapKey)

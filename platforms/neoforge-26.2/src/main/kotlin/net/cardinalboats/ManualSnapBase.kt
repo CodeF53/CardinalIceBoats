@@ -1,12 +1,11 @@
 package net.cardinalboats
 
-
-import com.google.common.eventbus.Subscribe
 import net.cardinalboats.ManualSnap.manualSnapKey
 import net.cardinalboats.ManualSnap.snap180
 import net.cardinalboats.generated.ModInfo
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
+import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.client.event.ClientTickEvent
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
@@ -21,16 +20,13 @@ interface ManualSnapBase {
 
     // Run by fabric initializer
     fun init() {
-
         NeoForge.EVENT_BUS.addListener { event: ClientTickEvent.Post ->
             tick(Minecraft.getInstance())
         }
-
     }
 
     @EventBusSubscriber(modid = ModInfo.MOD_ID)
     companion object {
-        @Subscribe
         fun onKeyRegister(event: RegisterKeyMappingsEvent) {
             // Register your keybinding
             event.register(manualSnapKey)
