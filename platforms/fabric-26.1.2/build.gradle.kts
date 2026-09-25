@@ -1,0 +1,23 @@
+import masecla.modrinth4j.model.version.ProjectVersion.*
+
+plugins {
+    alias(libs.plugins.easymod)
+}
+
+easyMod {
+    enableShadow = false
+    enableProGuard = false
+    jarPostProcessConfig = {
+        advzipArguments = listOf("-4", "-z", "-i", "100")
+    }
+}
+
+afterEvaluate {
+    modrinth {
+        failSilently.set(true)
+        if (System.getenv("IPNEXT_RELEASE") != null) {
+            token.set(System.getenv("MODRINTH_TOKEN"))
+        }
+        versionType.set(VersionType.RELEASE.name)
+    }
+}
