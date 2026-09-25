@@ -24,6 +24,7 @@ public class ChatMoveLie {
 
     @ModifyExpressionValue(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/KeyMapping;isDown()Z", ordinal = 0))
     private boolean lie(boolean original) {
+        if (Minecraft.getInstance().player == null) return original;
         if (lieAboutMovingForward) {
             if (Vanilla.INSTANCE.screen() instanceof ChatScreen && Minecraft.getInstance().player.getVehicle() instanceof AbstractBoat) {
                 // lie about moving forward
