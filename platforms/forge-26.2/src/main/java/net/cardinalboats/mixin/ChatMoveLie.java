@@ -1,11 +1,10 @@
 package net.cardinalboats.mixin;
 
-
-import net.cardinalboats.config.CIBConfig;
+import net.cardinalboats.config.ModSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.client.player.KeyboardInput;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
@@ -23,12 +22,12 @@ public class ChatMoveLie {
     private boolean lie(boolean original) {
         if (Minecraft.getInstance().player == null) return original;
         if (lieAboutMovingForward) {
-            if (Minecraft.getInstance().screen instanceof ChatScreen && Minecraft.getInstance().player.getVehicle() instanceof Boat) {
+            if (Minecraft.getInstance().screen instanceof ChatScreen && Minecraft.getInstance().player.getVehicle() instanceof AbstractBoat) {
                 // lie about moving forward
                 return true;
             } else {
                 cardinalBoats$timeSinceChatClose++;
-                if (cardinalBoats$timeSinceChatClose > CIBConfig.getInstance().ticksToMoveAfterChatHides) {
+                if (cardinalBoats$timeSinceChatClose > ModSettings.INSTANCE.getTICKS_TO_MOVE_AFTER_CHAT_HIDES().getValue()) {
                     // chat isn't open, turn off lying
                     lieAboutMovingForward = false;
                 } else {

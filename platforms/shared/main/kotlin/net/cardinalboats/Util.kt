@@ -1,7 +1,7 @@
 package net.cardinalboats
 
 import net.cardinalboats.alias.RADIANS_PER_DEGREE
-import net.cardinalboats.config.CIBConfig
+import net.cardinalboats.config.ModSettings
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
@@ -59,7 +59,7 @@ fun isIce(blockState: BlockState): Boolean {
 fun clientChatLog(player: Player?, message: String) {
     if (player == null) return
 
-    if (CIBConfig.getInstance().doChatShit) {
+    if (ModSettings.DO_CHAT_SHIFT.value) {
         player.sendOverlayMessage(Component.literal("[cardinalboats] $message"))
     }
 }

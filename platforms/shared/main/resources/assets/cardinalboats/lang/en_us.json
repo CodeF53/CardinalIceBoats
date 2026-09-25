@@ -46,5 +46,51 @@
     "text.autoconfig.CardinalBoat.option.smartCenterPrimedTurnDelayTicks.@Tooltip": "If enabled 'Smart Center an Primed Turns' will be done with this delay in ticks.\nThis helps with proper calculations where to move the boat to.\n20 ticks = 1 second.",
 
 
-    "text.autoconfig.CardinalBoat.title":                                           "Cardinal Ice Boats Config"
+    "text.autoconfig.CardinalBoat.title":                                           "Cardinal Ice Boats Config",
+
+    "cardinalboats.gui.config.title":                                               "Cardinal Ice Boats v%s Settings",
+    "cardinalboats.gui.config.ModSettings":                                         "General Settings",
+    "cardinalboats.gui.config.Hotkeys":                                             "HotKeys",
+    "cardinalboats.gui.config.Debugs":                                              "Debug",
+    "cardinalboats.gui.config.on":                                                  "ON",
+    "cardinalboats.gui.config.off":                                                 "OFF",
+    "cardinalboats.config.category.general_hotkeys":                                "Hotkeys",
+    "cardinalboats.config.category.privacy":                                        "Privacy",
+    "cardinalboats.config.category.debug":                                          "Debug",
+
+    "cardinalboats.config.category.boat":                                           "Boat Control",
+
+    "cardinalboats.config.name.do_chat_shift":                                      "Print primed turn logs to chat",
+    "cardinalboats.config.description.do_chat_shift":                               "Prints primed, completed, and cancelled messages to the chat.",
+
+    "cardinalboats.config.name.maintain_velocity_on_turns":                         "Maintain Velocity on Primed Turns",
+    "cardinalboats.config.description.maintain_velocity_on_turns":                  "Maintains forward velocity on Primed Turns, similar to the snap key.\\nMay not work well on laggy servers.\\n§4OP as f§ku§r§4ck, may get you banned.",
+
+    "cardinalboats.config.name.eight_way_snap_key":                                 "Snap Key Directionality",
+    "cardinalboats.config.description.eight_way_snap_key":                          "§bEight-Way§r - Pressing Snap Key will align boat to nearest 45°\n§6Four-Way§r - Pressing Snap Key will align boat to nearest 90°.",
+    "cardinalboats.enum.snap_key_mode.eight_way":                                   "Eight-Way",
+    "cardinalboats.enum.snap_key_mode.four_way":                                    "Four-Way",
+
+    "cardinalboats.config.name.move_while_chatting":                                "Keep Moving While Chatting",
+    "cardinalboats.config.description.move_while_chatting":                         "Allows you to chat while driving a boat.\\nIf you open the chat while moving forward, it keeps moving forward for you.\\n§mDon't text and drive.",
+
+    "cardinalboats.config.name.ticks_to_move_after_chat_hides":                     "Ticks to continue moving after chat closes",
+    "cardinalboats.config.description.ticks_to_move_after_chat_hides":              "The number of ticks to continue moving forward after closing the chat.\\nThis will give you time to press 'W' after closing the chat window.\\n20 ticks = 1 second.",
+
+    "cardinalboats.config.name.always_smart_center":                                "Always Smart Center",
+    "cardinalboats.config.description.ALWAYS_SMART_CENTER":                         "Runs smart center all the time when boat is perfectly cardinally aligned.",
+
+    "cardinalboats.config.name.smart_center_look_ahead":                            "Smart Center Lookahead",
+    "cardinalboats.config.description.smart_center_look_ahead":                     "Number of blocks ahead of you that smart center scans for walls.",
+
+    "cardinalboats.config.name.smart_center_primed_turn":                           "Smart Center on Primed Turns",
+    "cardinalboats.config.description.smart_center_primed_turn":                    "Boat will automatically smart center itself after taking a primed turn.",
+
+    "cardinalboats.config.name.smart_center_primed_turn_delay_ticks":               "Delay Smart Center after Primed Turn",
+    "cardinalboats.config.description.smart_center_primed_turn_delay_ticks":        "If enabled 'Smart Center an Primed Turns' will be done with this delay in ticks.\\nThis helps with proper calculations where to move the boat to.\\n20 ticks = 1 second.",
+
+    "cardinalboats.config.name.":                                                   "",
+    "cardinalboats.config.description.":                                            ""
+
+
 }

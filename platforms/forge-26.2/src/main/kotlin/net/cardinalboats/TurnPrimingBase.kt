@@ -7,10 +7,10 @@ import net.cardinalboats.TurnPriming.smartCenterKey
 import net.cardinalboats.generated.ModInfo
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
-import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.neoforge.client.event.ClientTickEvent
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
-import net.neoforged.neoforge.common.NeoForge
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent
+import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.event.TickEvent.ClientTickEvent
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 
 interface TurnPrimingBase {
 
@@ -20,9 +20,10 @@ interface TurnPrimingBase {
 
     fun init() {
 
-        NeoForge.EVENT_BUS.addListener { event: ClientTickEvent.Post ->
+        MinecraftForge.EVENT_BUS.register { event: ClientTickEvent.Post ->
             tick(Minecraft.getInstance())
         }
+        MinecraftForge.EVENT_BUS.register(Companion)
     }
 
     fun tick(minecraft: Minecraft)

@@ -1,15 +1,5 @@
 import masecla.modrinth4j.model.version.ProjectVersion.*
 
-val cloth_config_version: String by project
-
-repositories {
-    maven ("https://maven.shedaniel.me/")
-}
-
-dependencies {
-    implementation ("me.shedaniel.cloth:cloth-config-fabric:$cloth_config_version")
-}
-
 plugins {
     alias(libs.plugins.easymod)
 }

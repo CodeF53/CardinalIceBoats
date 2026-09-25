@@ -1,3 +1,4 @@
+/*
 package net.cardinalboats.config;
 
 import me.shedaniel.autoconfig.AutoConfig;
@@ -49,3 +50,4 @@ public class CIBConfig implements ConfigData {
         return AutoConfig.getConfigHolder(CIBConfig.class).getConfig();
     }
 }
+*/

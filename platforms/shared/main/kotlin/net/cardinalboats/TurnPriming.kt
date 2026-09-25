@@ -2,9 +2,8 @@ package net.cardinalboats
 
 import com.mojang.blaze3d.platform.InputConstants
 import net.cardinalboats.alias.KEY_BINDING_CATEGORY
-import net.cardinalboats.config.CIBConfig
+import net.cardinalboats.config.ModSettings
 import net.minecraft.client.KeyMapping
-import net.minecraft.client.KeyMapping.Category
 import net.minecraft.client.Minecraft
 import net.minecraft.client.multiplayer.ClientLevel
 import net.minecraft.core.BlockPos
@@ -23,7 +22,7 @@ object TurnPriming: TurnPrimingBase {
                                    val task: () -> Unit) {
         init {
             if (ticks == null) {
-                ticks = CIBConfig.getInstance().smartCenterPrimedTurnDelayTicks
+                ticks = ModSettings.SMART_CENTER_PRIMED_TURN_DELAY_TICKS.value
             }
             if (times == null) {
                 times = 0
@@ -38,7 +37,7 @@ object TurnPriming: TurnPrimingBase {
                 if (times!! <= 0) {
                     return true
                 } else {
-                    ticks = CIBConfig.getInstance().smartCenterPrimedTurnDelayTicks
+                    ticks = ModSettings.SMART_CENTER_PRIMED_TURN_DELAY_TICKS.value
                 }
             }
             return false
@@ -121,7 +120,7 @@ object TurnPriming: TurnPrimingBase {
                     lTurnPrimed = false
                 }
 
-                if (CIBConfig.getInstance().alwaysSmartCenter && boat.yRot % 90 == 0f) {
+                if (ModSettings.ALWAYS_SMART_CENTER.value && boat.yRot % 90 == 0f) {
                     TickCountingTask(task = centerTask).addTask().runNow()
                 }
 
@@ -132,18 +131,18 @@ object TurnPriming: TurnPrimingBase {
                 val world = minecraft.level!!
 
                 if (lTurnPrimed && shouldTurn(boat, world, true)) {
-                    rotateBoat(boat, roundYRot(boat.yRot - 90, 90), CIBConfig.getInstance().maintainVelocityOnTurns)
+                    rotateBoat(boat, roundYRot(boat.yRot - 90, 90), ModSettings.MAINTAIN_VELOCITY_ON_TURNS.value)
                     lTurnPrimed = false
                     clientChatLog(player, Component.translatable("info.cardinalboats.left_turn_complete").string)
                     TickCountingTask {
-                        if (CIBConfig.getInstance().smartCenterPrimedTurn) centerTask()
+                        if (ModSettings.SMART_CENTER_PRIMED_TURN.value) centerTask()
                     }.addTask().runNow()
                 } else if (rTurnPrimed && shouldTurn(boat, world, false)) {
-                    rotateBoat(boat, roundYRot(boat.yRot + 90, 90), CIBConfig.getInstance().maintainVelocityOnTurns)
+                    rotateBoat(boat, roundYRot(boat.yRot + 90, 90), ModSettings.MAINTAIN_VELOCITY_ON_TURNS.value)
                     rTurnPrimed = false
                     clientChatLog(player, Component.translatable("info.cardinalboats.right_turn_complete").string)
                     TickCountingTask {
-                        if (CIBConfig.getInstance().smartCenterPrimedTurn) centerTask()
+                        if (ModSettings.SMART_CENTER_PRIMED_TURN.value) centerTask()
                     }.addTask().runNow()
                 }
             } else {
@@ -198,7 +197,7 @@ object TurnPriming: TurnPrimingBase {
         val rootY = boat.blockY
         val rootZ = boat.blockZ
 
-        val scanAhead = CIBConfig.getInstance().smartCenterLookAhead
+        val scanAhead = ModSettings.SMART_CENTER_LOOK_AHEAD.value
         if (direction == Direction.NORTH || direction == Direction.SOUTH) {
             val startZ = if (direction == Direction.NORTH) -scanAhead else -1
             val endZ = if (direction == Direction.NORTH) 1 else scanAhead

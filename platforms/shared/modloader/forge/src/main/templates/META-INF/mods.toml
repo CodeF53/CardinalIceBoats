@@ -1,6 +1,5 @@
-modLoader="kotlinforforge"
-loaderVersion="[${KFF_LOADER_VERSION},)"
-
+modLoader="javafml"
+loaderVersion="${FML_VERSION}"
 issueTrackerURL=${ISSUES}
 
 license=${LICENSE}

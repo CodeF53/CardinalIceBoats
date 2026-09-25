@@ -1,8 +1,6 @@
 package net.cardinalboats.mixin;
 
-import net.cardinalboats.config.CIBConfig;
-
-
+import net.cardinalboats.config.ModSettings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
@@ -23,7 +21,7 @@ public abstract class ChatMoveStartLying {
         // on opening the chat
         assert this.player != null;
 
-        if (player.getVehicle() instanceof AbstractBoat && CIBConfig.getInstance().moveWhileChatting) {
+        if (player.getVehicle() instanceof AbstractBoat && ModSettings.INSTANCE.getMOVE_WHILE_CHATTING().getValue()) {
             // if the player is holding W
             if (Minecraft.getInstance().options.keyUp.isDown()) {
                 // lie and tell the server that we are still moving forward despite having chat open
