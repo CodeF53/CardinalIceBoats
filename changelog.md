@@ -1,20 +1,30 @@
 <!-- latest begin -->
 ### 2.1.0
 
-- Added support for:
-  * Fabic 26.1.x
-  * NeoForge 26.1.x
+- Added support for Minecraft 26.2 and 26.3
+- Requires [libIPN](https://modrinth.com/mod/libipn) 
+- No longer supports Cloth Config
+- No longer needs Kotlin for Forge
+- No longer supports server-side installation
 
-NOTE: Future versions will drop Cloth Config and switch to libIPN for the configuration. This is due to Cloth Config dropping support for Forge.
+
+<!-- latest end -->
+<!-- rest begin -->
 
 ### 2.0.5
 
 - Added support for:
-  * Fabic 1.21.11
+    * Fabric 26.1.x
+    * NeoForge 26.1.x
+
+NOTE: Future versions will drop Cloth Config and switch to libIPN for the configuration. This is due to Cloth Config dropping support for Forge.
+
+### 2.0.4
+
+- Added support for:
+  * Fabric 1.21.11
   * NeoForge 1.21.11
 
-<!-- latest end -->
-<!-- rest begin -->
 
 
 ### 2.0.3

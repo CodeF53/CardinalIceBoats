@@ -10,8 +10,7 @@ modId="${MODID}"
 version=${VERSION}
 displayName=${DISPLAY_NAME}
 displayURL=${WIKI}
-iconFile=${ICON}
-bannerFile=${ICON}
+logoFile=${ICON}
 credits='''
 ${CONTRIBUTORS}
 '''

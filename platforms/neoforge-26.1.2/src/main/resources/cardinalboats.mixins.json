@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.cardinalboats.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ChatMoveLie",
+    "ChatMoveStartLying"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "BoatPlacementSnap"
+  ]
+}
