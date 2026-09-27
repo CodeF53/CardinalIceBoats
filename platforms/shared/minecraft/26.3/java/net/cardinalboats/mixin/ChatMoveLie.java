@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 
-import static net.cardinalboats.UtilKt.lieAboutMovingForward;
+import static net.cardinalboats.Util.lieAboutMovingForward;
 
 
 @Mixin(value = KeyboardInput.class, priority = 1000)

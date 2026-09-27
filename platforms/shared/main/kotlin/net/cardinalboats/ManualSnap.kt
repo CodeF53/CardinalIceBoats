@@ -1,7 +1,11 @@
 package net.cardinalboats
 
 import com.mojang.blaze3d.platform.InputConstants
+import net.cardinalboats.Util.isIce
+import net.cardinalboats.Util.rotateBoat
+import net.cardinalboats.Util.roundYRot
 import net.cardinalboats.alias.KEY_BINDING_CATEGORY
+import net.cardinalboats.alias.KeyTypeKeyboard
 import net.cardinalboats.config.ModSettings
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
@@ -9,16 +13,18 @@ import net.minecraft.world.entity.vehicle.boat.AbstractBoat
 
 object ManualSnap: ManualSnapBase {
 
-    override val manualSnapKey = KeyMapping("key.cardinalboats.snapManual",
-                                            InputConstants.Type.KEYSYM,
-                                            InputConstants.KEY_UP,
-                                            KEY_BINDING_CATEGORY)
+    override val manualSnapKey by lazy {
+        KeyMapping("key.cardinalboats.snapManual", KeyTypeKeyboard,
+                   InputConstants.KEY_UP,
+                   KEY_BINDING_CATEGORY)
+    }
 
-    override val snap180 = KeyMapping("key.cardinalboats.snap180",
-                                      InputConstants.Type.KEYSYM,
-                                      InputConstants.KEY_DOWN,
-                                      KEY_BINDING_CATEGORY)
-
+    override val snap180 by lazy {
+        KeyMapping("key.cardinalboats.snap180",
+                   KeyTypeKeyboard,
+                   InputConstants.KEY_DOWN,
+                   KEY_BINDING_CATEGORY)
+    }
 
 
     @Suppress("EmptyWhileBlock", "MagicNumber")

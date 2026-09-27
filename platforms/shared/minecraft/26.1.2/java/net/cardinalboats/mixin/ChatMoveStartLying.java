@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import static net.cardinalboats.UtilKt.lieAboutMovingForward;
+import static net.cardinalboats.Util.lieAboutMovingForward;
 
 @Mixin(value = Minecraft.class, priority = 1000)
 public abstract class ChatMoveStartLying {

@@ -10,14 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 
 import net.minecraft.world.item.BoatItem;
 
-import net.cardinalboats.UtilKt;
+import net.cardinalboats.Util;
 
 @Mixin(BoatItem.class)
 public class BoatPlacementSnap {
     @ModifyExpressionValue(method = "use", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getYRot()F"))
     private float boatSnap(float original, @Local(argsOnly = true) Player player, @Local(argsOnly = true) Level world) {
-        if (UtilKt.shouldSnap(world, player))
-            return UtilKt.roundYRot(player.getYRot(), 45);
+        if (Util.INSTANCE.shouldSnap(world, player))
+            return Util.INSTANCE.roundYRot(player.getYRot(), 45);
         return original;
     }
 }

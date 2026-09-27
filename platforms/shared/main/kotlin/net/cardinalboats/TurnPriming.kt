@@ -1,7 +1,13 @@
 package net.cardinalboats
 
 import com.mojang.blaze3d.platform.InputConstants
+import net.cardinalboats.Util.clientChatLog
+import net.cardinalboats.Util.isIce
+import net.cardinalboats.Util.lieAboutMovingForward
+import net.cardinalboats.Util.rotateBoat
+import net.cardinalboats.Util.roundYRot
 import net.cardinalboats.alias.KEY_BINDING_CATEGORY
+import net.cardinalboats.alias.KeyTypeKeyboard
 import net.cardinalboats.config.ModSettings
 import net.minecraft.client.KeyMapping
 import net.minecraft.client.Minecraft
@@ -57,25 +63,30 @@ object TurnPriming: TurnPrimingBase {
         return this;
     }
 
-    override val lQueueKey = KeyMapping("key.cardinalboats.prime_left",
-                                        InputConstants.Type.KEYSYM,
-                                        InputConstants.KEY_LEFT,
-                                        KEY_BINDING_CATEGORY) //"category.cardinalboats.key_category_title"
-
-    override val rQueueKey = KeyMapping("key.cardinalboats.prime_right",
-                                        InputConstants.Type.KEYSYM,
-                                        InputConstants.KEY_RIGHT,
-                                        KEY_BINDING_CATEGORY
-        //"category.cardinalboats.key_category_title"
-    )
+    override val lQueueKey by lazy {
+        KeyMapping("key.cardinalboats.prime_left",
+                   KeyTypeKeyboard,
+                   InputConstants.KEY_LEFT,
+                   KEY_BINDING_CATEGORY)
+    }
 
 
-    override val smartCenterKey = KeyMapping("key.cardinalboats.smartCenter",
-                                             InputConstants.Type.KEYSYM,
-                                             InputConstants.KEY_BACKSLASH,
-                                             KEY_BINDING_CATEGORY
-                                            //"category.cardinalboats.key_category_title"
-    )
+    override val rQueueKey by lazy {
+        KeyMapping("key.cardinalboats.prime_right",
+                   KeyTypeKeyboard,
+                   InputConstants.KEY_RIGHT,
+                   KEY_BINDING_CATEGORY)
+    }
+
+
+
+    override val smartCenterKey by lazy {
+        KeyMapping("key.cardinalboats.smartCenter",
+                   KeyTypeKeyboard,
+                   InputConstants.KEY_BACKSLASH,
+                   KEY_BINDING_CATEGORY)
+    }
+
 
     private var lTurnPrimed = false
     private var rTurnPrimed = false
